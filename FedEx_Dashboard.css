@@ -1,0 +1,28 @@
+h1
+{
+    background-color: #623D95;
+    margin: 0;
+}
+
+body
+{
+    margin: 0;
+}
+
+.fedexLogo
+{
+    width: 210px;
+    height: 100px;
+}
+
+.textFont
+{
+    color: #FFFFFF;
+    position: absolute;
+    height: 43px;
+    right: 750px;
+    top: 50px;
+    font-family: "Inria Sans", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+}
