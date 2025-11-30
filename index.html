@@ -4,16 +4,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FedEx Alerts</title>
-
+    <title>FedEx Alert Dashboard</title>
     <link rel="icon" href="./Images/logo.png" type="image/x-icon">
-    
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-    <img src="./Images/logo.png" alt="FedEx Logo">
+    <!-- HEADER -->
+    <header class="header">
+        <img id="logo" src="./Images/fedexlogo.png" alt="FedEx Logo" />
+        <div class="location">Starkville, MS</div>
+        <div class="datetime">
+            <div>14:25</div>
+            <div>Oct 21, 2025</div>
+        </div>
+    </header>
 
+    <!-- SUB HEADER -->
+    <section class="sub-header">
+        
+        <img class="icon" id="history" src="./Images/Icons/history.png" alt="History">
+        <img class="icon" id="manager" src="./Images/Icons/manager.png" alt="Managment">
+        <span class="system-health">System Health: 60%</span>
+        <img class="icon" id="hide" src="./Images/Icons/hide.png" alt="Hide">
+        <img class="icon" id="filter" src="./Images/Icons/filter.png" alt="Filter">
+        
+    </section>
 
+    <!-- MAIN CONTENT -->
+    <main class="alert-container">
+
+        <!-- STAFF ALERTS -->
+        <div class="stack">
+            <div class="stack-1 alert-card red">
+                <div class="card-header red">
+                    <img class="card-icon" id="staff" src="./Images/Icons/staff.png" alt="Staff">
+                    <h2>Staff Alert</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide">
+                </div>
+
+                <div class="card-body">
+                    <h3>Staff Shortage</h3>
+                    <p><strong>Location:</strong> Memphis Superhub (MEM01) – Cargo Bay 4</p>
+                    <p><strong>Current Staffing:</strong> 18/32</p>
+                    <p><strong>Departments Affected:</strong> Loading & Dispatch</p>
+                </div>
+            </div>
+            <div class="stack-2 alert-card yellow">
+                <div class="card-header yellow">
+                    <img class="card-icon" id="staff" src="./Images/Icons/staff.png" alt="Staff">
+                    <h2>Staff Alert</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide">
+                </div>
+
+                <div class="card-body">
+                    <h3>Staff Shortage</h3>
+                    <p><strong>Location:</strong> Memphis Superhub (MEM01) – Cargo Bay 4</p>
+                    <p><strong>Current Staffing:</strong> 18/32</p>
+                    <p><strong>Departments Affected:</strong> Loading & Dispatch</p>
+                </div>
+            </div>
+            <div class="stack-3 alert-card green">
+                <div class="card-header green">
+                    <img class="card-icon" id="staff" src="./Images/Icons/staff.png" alt="Staff">
+                    <h2>Staff Alert</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide">
+                </div>
+
+                <div class="card-body">
+                    <h3>Staff Shortage</h3>
+                    <p><strong>Location:</strong> Memphis Superhub (MEM01) – Cargo Bay 4</p>
+                    <p><strong>Current Staffing:</strong> 18/32</p>
+                    <p><strong>Departments Affected:</strong> Loading & Dispatch</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TIME ALERTS -->
+        <div class="stack">
+            <div class="stack-1 alert-card red">
+                <div class="card-header red">
+                    <img class="card-icon" id="time" src="./Images/Icons/time.png" alt="Time">
+                    <h2>Time Alert</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide">
+                </div>
+
+                <div class="card-body">
+                    <h3>Flight Delay</h3>
+                    <p><strong>Flight #:</strong> FX 2143</p>
+                    <p><strong>Estimated Departure:</strong> 09/30/2025 – 09:45 CST</p>
+                    <p><strong>Impact:</strong> 5,600 packages delayed</p>
+                </div>
+            </div>
+            <div class="stack-2 alert-card red">
+                <div class="card-header red">
+                    <img class="card-icon" id="time" src="./Images/Icons/time.png" alt="Time">
+                    <h2>Time Alert</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide">
+                </div>
+
+                <div class="card-body">
+                    <h3>Flight Delay</h3>
+                    <p><strong>Flight #:</strong> FX 2143</p>
+                    <p><strong>Estimated Departure:</strong> 09/30/2025 – 09:45 CST</p>
+                    <p><strong>Impact:</strong> 5,600 packages delayed</p>
+                </div>
+            </div>
+            <div class="stack-3 alert-card yellow">
+                <div class="card-header yellow">
+                    <img class="card-icon" id="time" src="./Images/Icons/time.png" alt="Time">
+                    <h2>Time Alert</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide">
+                </div>
+
+                <div class="card-body">
+                    <h3>Flight Delay</h3>
+                    <p><strong>Flight #:</strong> FX 2143</p>
+                    <p><strong>Estimated Departure:</strong> 09/30/2025 – 09:45 CST</p>
+                    <p><strong>Impact:</strong> 5,600 packages delayed</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VOLUME ALERTS -->
+        <div class="stack">
+            <div class="stack-1 alert-card yellow">
+                <div class="card-header yellow">
+                    <img class="card-icon" id="volume" src="./Images/Icons/package.png" alt="Volume">
+                    <h2>Volume Alert</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide">
+                </div>
+
+                <div class="card-body">
+                    <h3>Belt Damage</h3>
+                    <p><strong>Location:</strong> DFW02 – Sorting Belt Line 7</p>
+                    <p><strong>Description:</strong> Container C-571 sustained structural damage during forklift transfer.</p>
+                    <p><strong>Estimated Recovery Time:</strong> 4 hours.</p>
+                </div>
+            </div>
+            <div class="stack-2 alert-card green">
+                <div class="card-header green">
+                    <img class="card-icon" id="volume" src="./Images/Icons/package.png" alt="Volume">
+                    <h2>Volume Alert</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide">
+                </div>
+
+                <div class="card-body">
+                    <h3>Belt Damage</h3>
+                    <p><strong>Location:</strong> DFW02 – Sorting Belt Line 7</p>
+                    <p><strong>Description:</strong> Container C-571 sustained structural damage during forklift transfer.</p>
+                    <p><strong>Estimated Recovery Time:</strong> 4 hours.</p>
+                </div>
+            </div>
+            <div class="stack-3 alert-card green">
+                <div class="card-header green">
+                    <img class="card-icon" id="volume" src="./Images/Icons/package.png" alt="Volume">
+                    <h2>Volume Alert</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide">
+                </div>
+
+                <div class="card-body">
+                    <h3>Belt Damage</h3>
+                    <p><strong>Location:</strong> DFW02 – Sorting Belt Line 7</p>
+                    <p><strong>Description:</strong> Container C-571 sustained structural damage during forklift transfer.</p>
+                    <p><strong>Estimated Recovery Time:</strong> 4 hours.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEATHER ALERTS -->
+        <div class="stack">
+            <div class="stack-1 alert-card yellow">
+                <div class="card-header yellow">
+                    <img class="card-icon" id="weather" src="./Images/Icons/weather.png" alt="Weather">
+                    <h2>Severe Weather</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide">
+                </div>
+
+                <div class="card-body">
+                    <h3>Wind Advisory</h3>
+                    <p><strong>Location:</strong> Newark Liberty Hub (EWR01)</p>
+                    <p><strong>Condition:</strong> High Winds / Ground</p>
+                    <p><strong>Stop Time:</strong> 11:45 AM EST</p>
+                </div>
+            </div>
+            <div class="stack-2 alert-card green">
+                <div class="card-header green">
+                    <img class="card-icon" id="weather" src="./Images/Icons/weather.png" alt="Weather">
+                    <h2>Severe Weather</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide">
+                </div>
+
+                <div class="card-body">
+                    <h3>Wind Advisory</h3>
+                    <p><strong>Location:</strong> Newark Liberty Hub (EWR01)</p>
+                    <p><strong>Condition:</strong> High Winds / Ground</p>
+                    <p><strong>Stop Time:</strong> 11:45 AM EST</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <script src="./index.js"></script>
 </body>
 
 </html>
