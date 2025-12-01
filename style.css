@@ -89,6 +89,29 @@ body {
     padding: 2rem;
 }
 
+/* HIDDEN CARDS VIEW */
+.alert-container.hidden-view {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+.alert-container.hidden-view .alert-card {
+    position: relative !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 60rem;
+    margin: 0 auto;
+    min-height: 25rem;
+    width: 60vw;
+    height: 60vh;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
 
 /* ALERT CARDS */
 .alert-card {
@@ -254,11 +277,6 @@ body {
     transform: translateX(-50%);
     display: none;
     gap: 2rem;
-    /* background: white;
-    padding: 0.8rem 1.2rem;
-    border-radius: 0.6rem;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-    z-index: 3000; */
 }
 
 #bottomSwitch.active {
@@ -277,6 +295,24 @@ body {
     opacity: 1;
     transform: scale(1.15);
 }
+
+/* Hide extra details by default */
+.extra-details {
+    display: none;
+}
+
+/* Show extra details in zoom mode */
+.stack.active .extra-details, .alert-container.hidden-view .extra-details {
+    display: block;
+}
+
+.main-details {
+    display: block;
+}
+.stack.active .main-details, .alert-container.hidden-view .main-details {
+    display: none;
+}
+
 
 
 @media (max-width: 600px) {
@@ -354,4 +390,18 @@ body {
 .card-body {
     padding: 1rem;
 }
+
+#history {
+    height: 2rem;
+}
+#trend {
+    height: 2rem;
+}
+#hide {
+    height: 2rem;
+}
+#filter {
+    height: 1.3rem;
+}
+
 }

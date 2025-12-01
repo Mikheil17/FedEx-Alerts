@@ -4,14 +4,70 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.querySelector(".alert-container");
     const bottomSwitch = document.getElementById("bottomSwitch");
     const bottomIcons = Array.from(bottomSwitch.querySelectorAll("img"));
+    const hideToggle = document.getElementById("hide");
+    const logo = document.getElementById("logo");
 
     let activeIndex = null;
+    let hiddenCards = []; // Store {card, stackIndex, originalParent} objects
+    let showingHidden = false; // Track if we're in "show hidden" mode
+
+    /* ======================================================
+       Create and update badge for hidden count
+    ====================================================== */
+    const badge = document.createElement("div");
+    badge.id = "hidden-badge";
+    badge.style.cssText = `
+        position: absolute;
+        bottom: 0.5rem;
+        right: -0.3rem;
+        background: #FF6200;
+        color: white;
+        border-radius: 50%;
+        width: 1rem;
+        height: 1rem;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: bold;
+        pointer-events: none;
+    `;
+    
+    // Wrap hide icon in a container for positioning
+    const hideContainer = document.createElement("div");
+    hideContainer.style.position = "relative";
+    hideContainer.style.display = "inline-block";
+    hideToggle.parentNode.insertBefore(hideContainer, hideToggle);
+    hideContainer.appendChild(hideToggle);
+    hideContainer.appendChild(badge);
+
+    function updateBadge() {
+        const count = hiddenCards.length;
+        if (count > 0) {
+            badge.textContent = count;
+            badge.style.display = "flex";
+        } else {
+            badge.style.display = "none";
+        }
+    }
+
+
+    /* ======================================================
+       Logo click - reset view
+    ====================================================== */
+    logo.addEventListener("click", () => {
+        if (showingHidden) {
+            hideToggle.click(); // Exit hidden view
+        }
+        resetView(); // Exit zoom mode
+    });
 
     /* ======================================================
        Activate a stack (zoom mode)
     ====================================================== */
     window.activateStack = function(index) {
         if (index < 0 || index >= stacks.length) return;
+        if (showingHidden) return; // Don't allow zoom in hidden view
 
         activeIndex = index;
 
@@ -65,6 +121,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ======================================================
+       Reorganize cards in stack after hiding
+    ====================================================== */
+    function reorganizeStack(stack) {
+        const cards = Array.from(stack.querySelectorAll(".alert-card"));
+        const stackClasses = ["stack-1", "stack-2", "stack-3"];
+        
+        // Reassign classes based on remaining cards
+        cards.forEach((card, index) => {
+            card.classList.remove("stack-1", "stack-2", "stack-3");
+            if (index < stackClasses.length) {
+                card.classList.add(stackClasses[index]);
+            }
+        });
+    }
+
+    /* ======================================================
        Reset back to normal grid mode
     ====================================================== */
     function resetView() {
@@ -79,6 +151,148 @@ document.addEventListener("DOMContentLoaded", () => {
         bottomSwitch.classList.remove("active");
         bottomIcons.forEach(icon => icon.style.display = "inline");
     }
+
+    /* ======================================================
+       Hide/Show functionality
+    ====================================================== */
+    
+    // Toggle to hidden cards view
+    hideToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        showingHidden = !showingHidden;
+        
+        if (showingHidden) {
+            // Enter hidden view mode
+            hideToggle.style.opacity = "1";
+            hideToggle.style.transform = "scale(1.1)";
+            container.classList.add("hidden-view");
+            resetView(); // Exit zoom mode
+            
+            // Clear container and show only hidden cards
+            container.innerHTML = "";
+            hiddenCards.forEach(hiddenItem => {
+                container.appendChild(hiddenItem.card);
+                hiddenItem.card.style.opacity = "1";
+                hiddenItem.card.style.display = "flex";
+            });
+            
+        } else {
+            // Exit hidden view mode
+            hideToggle.style.opacity = "0.8";
+            hideToggle.style.transform = "scale(1)";
+            container.classList.remove("hidden-view");
+            
+            // Restore original stacks
+            container.innerHTML = "";
+            stacks.forEach(stack => {
+                container.appendChild(stack);
+            });
+            container.appendChild(bottomSwitch);
+        }
+    });
+
+    // Setup hide icons for all cards (including dynamically restored ones)
+    function setupHideIcon(card, stack, stackIndex) {
+        const hideIcon = card.querySelector(".card-hide-icon");
+        
+        // Remove old listeners by cloning
+        const newHideIcon = hideIcon.cloneNode(true);
+        hideIcon.parentNode.replaceChild(newHideIcon, hideIcon);
+        
+        newHideIcon.addEventListener("click", (e) => {
+            e.stopPropagation();
+            
+            // If in hidden view, restore the card
+            if (showingHidden) {
+                // Find this card in hiddenCards array
+                const hiddenIndex = hiddenCards.findIndex(item => item.card === card);
+                if (hiddenIndex !== -1) {
+                    const hiddenItem = hiddenCards[hiddenIndex];
+                    
+                    // Fade out from hidden view
+                    card.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+                    card.style.opacity = "0";
+                    card.style.transform = "scale(0.95)";
+                    
+                    setTimeout(() => {
+                        // Remove from hidden cards array
+                        hiddenCards.splice(hiddenIndex, 1);
+                        
+                        // Reset card styles
+                        card.style.opacity = "";
+                        card.style.transform = "";
+                        card.style.transition = "";
+                        card.style.display = "";
+                        
+                        // Restore to original stack
+                        hiddenItem.originalParent.appendChild(card);
+                        
+                        // Reorganize the stack
+                        reorganizeStack(hiddenItem.originalParent);
+                        
+                        // Show the stack again if it was hidden
+                        hiddenItem.originalParent.style.display = "";
+                        
+                        // Remove from hidden view container
+                        if (card.parentNode === container) {
+                            card.remove();
+                        }
+                        
+                        // Re-setup the hide icon for this card
+                        setupHideIcon(card, hiddenItem.originalParent, hiddenItem.stackIndex);
+                        
+                        // Update badge count
+                        updateBadge();
+                        
+                        // If no more hidden cards, exit hidden view
+                        if (hiddenCards.length === 0) {
+                            hideToggle.click();
+                        }
+                    }, 400);
+                }
+            } else {
+                // Normal mode: hide the card
+                // Fade out animation
+                card.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+                card.style.opacity = "0";
+                card.style.transform = "scale(0.95)";
+                
+                setTimeout(() => {
+                    // Remove from stack and add to hidden cards with metadata
+                    card.remove();
+                    hiddenCards.push({
+                        card: card,
+                        stackIndex: stackIndex,
+                        originalParent: stack
+                    });
+                    
+                    // Reorganize remaining cards
+                    reorganizeStack(stack);
+                    
+                    // If stack is now empty, hide the whole stack
+                    if (stack.querySelectorAll(".alert-card").length === 0) {
+                        stack.style.display = "none";
+                        
+                        // Exit zoom only if the empty stack was the active one
+                        if (activeIndex === stackIndex) {
+                            resetView();
+                        }
+                    }
+                    
+                    // Update badge count
+                    updateBadge();
+                }, 400);
+            }
+        });
+    }
+
+    // Initialize hide icons for all existing cards
+    stacks.forEach((stack, stackIndex) => {
+        const cards = stack.querySelectorAll(".alert-card");
+        cards.forEach(card => {
+            setupHideIcon(card, stack, stackIndex);
+        });
+    });
 
     /* Click a stack → zoom OR rotate cards if in zoom mode */
     stacks.forEach((stack, index) => {
@@ -119,7 +333,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* Escape → reset */
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") resetView();
+        if (e.key === "Escape") {
+            if (showingHidden) {
+                // Exit hidden view
+                hideToggle.click();
+            } else {
+                resetView();
+            }
+        }
     });
 
 });

@@ -13,9 +13,7 @@
 <body>
     <!-- HEADER -->
     <header class="header">
-        <a href="index.html">
-        <img id="logo" src="./Images/fedexlogo.png" alt="FedEx Logo" />
-        </a>
+        <a href="index.html"><img id="logo" src="./Images/fedexlogo.png" alt="FedEx Logo" /></a>
         <div class="location">Starkville, MS</div>
         <img class="icon" id="manager" src="./Images/Icons/manager.png" alt="Managment" title="Managment">
     </header>
@@ -36,174 +34,339 @@
 
         <!-- STAFF ALERTS -->
         <div class="stack" data-index="0">
+            <!-- STAFF STACK-1 (RED) -->
             <div class="stack-1 alert-card red">
                 <div class="card-header red">
                     <img class="card-icon" id="staff" src="./Images/Icons/staff.png" alt="Staff">
                     <h2>Staff Alert</h2>
                     <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
                 </div>
-
                 <div class="card-body">
-                    <h3>Staff Shortage</h3>
-                    <p><strong>Location:</strong> Memphis Superhub (MEM01) – Cargo Bay 4</p>
-                    <p><strong>Current Staffing:</strong> 18/32</p>
-                    <p><strong>Departments Affected:</strong> Loading & Dispatch</p>
+                    <div class="main-details">
+                        <h3>Staff Shortage</h3>
+                        <p><strong>Location:</strong> Memphis Superhub (MEM01) – Cargo Bay 4</p>
+                        <p><strong>Current Staffing:</strong> 18/32</p>
+                        <p><strong>Departments Affected:</strong> Loading & Dispatch</p>
+                    </div>    
+                    <div class="extra-details">
+                        <h3>Staff Shortage</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-S04518</p>
+                        <p><strong>Location:</strong> MEM01 - Cargo Bay 4</p>
+                        <p><strong>Severity Level:</strong> 2 (Low-Moderate)</p>
+                        <p><strong>Reported At:</strong> 09/30/2025 - 05:42 CST</p>
+                        <p><strong>Estimated Resolution:</strong> 09/30/2025 - 12:00 CST</p>
+                        </br>
+                        <p><strong>Staff Count:</strong> 18 present / 32 required</p>
+                        <p><strong>Impact:</strong> 3 outbound flights delayed, 72 packages pending load</p>
+                        <p><strong>Notes:</strong> Majority of absences linked to local transit strike. On-call staff being redirected from MEM02</p>
+                    </div>
                 </div>
             </div>
+            
+            <!-- STAFF STACK-2 (YELLOW) -->
             <div class="stack-2 alert-card yellow">
                 <div class="card-header yellow">
                     <img class="card-icon" id="staff" src="./Images/Icons/staff.png" alt="Staff">
                     <h2>Staff Alert</h2>
                     <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
                 </div>
-
                 <div class="card-body">
-                    <h3>Staff Shortage</h3>
-                    <p><strong>Location:</strong> Memphis Superhub (MEM01) – Cargo Bay 4</p>
-                    <p><strong>Current Staffing:</strong> 18/32</p>
-                    <p><strong>Departments Affected:</strong> Loading & Dispatch</p>
+                    <div class="main-details">
+                        <h3>Certification Expiring</h3>
+                        <p><strong>Location:</strong> Indianapolis Hub (IND01) – Hazmat Section</p>
+                        <p><strong>Staff Affected:</strong> 12 handlers</p>
+                        <p><strong>Expiration Date:</strong> 10/15/2025</p>
+                    </div>
+                    <div class="extra-details">
+                        <h3>Certification Expiring</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-S04521</p>
+                        <p><strong>Location:</strong> IND01 - Hazmat Section</p>
+                        <p><strong>Severity Level:</strong> 1 (Low)</p>
+                        <p><strong>Reported At:</strong> 09/30/2025 - 07:15 CST</p>
+                        <p><strong>Action Required By:</strong> 10/10/2025</p>
+                        </br>
+                        <p><strong>Staff Affected:</strong> 12 handlers require recertification</p>
+                        <p><strong>Impact:</strong> Potential hazmat processing delays if not renewed</p>
+                        <p><strong>Notes:</strong> Training sessions scheduled for 10/05/2025 and 10/08/2025. Contact HR to confirm attendance</p>
+                    </div>
                 </div>
             </div>
+            
+            <!-- STAFF STACK-3 (GREEN) -->
             <div class="stack-3 alert-card green">
                 <div class="card-header green">
                     <img class="card-icon" id="staff" src="./Images/Icons/staff.png" alt="Staff">
                     <h2>Staff Alert</h2>
                     <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
                 </div>
-
                 <div class="card-body">
-                    <h3>Staff Shortage</h3>
-                    <p><strong>Location:</strong> Memphis Superhub (MEM01) – Cargo Bay 4</p>
-                    <p><strong>Current Staffing:</strong> 18/32</p>
-                    <p><strong>Departments Affected:</strong> Loading & Dispatch</p>
+                    <div class="main-details">
+                        <h3>Shift Overlap Complete</h3>
+                        <p><strong>Location:</strong> Los Angeles Gateway (LAX03) – Sort Floor</p>
+                        <p><strong>Current Staffing:</strong> 45/42</p>
+                        <p><strong>Status:</strong> Fully Operational</p>
+                    </div>
+                    <div class="extra-details">
+                        <h3>Shift Overlap Complete</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-S04489</p>
+                        <p><strong>Location:</strong> LAX03 - Sort Floor</p>
+                        <p><strong>Severity Level:</strong> 0 (Informational)</p>
+                        <p><strong>Reported At:</strong> 09/30/2025 - 06:30 PST</p>
+                        <p><strong>Status:</strong> Resolved</p>
+                        </br>
+                        <p><strong>Staff Count:</strong> 45 present / 42 required (107% capacity)</p>
+                        <p><strong>Impact:</strong> Above-average processing speed, ahead of schedule by 25 minutes</p>
+                        <p><strong>Notes:</strong> Day and night shift overlap successful. Peak volume handled efficiently</p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- TIME ALERTS -->
         <div class="stack" data-index="1">
+            <!-- TIME STACK-1 (RED) -->
             <div class="stack-1 alert-card red">
                 <div class="card-header red">
                     <img class="card-icon" id="time" src="./Images/Icons/time.png" alt="Time">
                     <h2>Time Alert</h2>
                     <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
                 </div>
-
                 <div class="card-body">
-                    <h3>Flight Delay</h3>
-                    <p><strong>Flight #:</strong> FX 2143</p>
-                    <p><strong>Estimated Departure:</strong> 09/30/2025 – 09:45 CST</p>
-                    <p><strong>Impact:</strong> 5,600 packages delayed</p>
+                    <div class="main-details">
+                        <h3>Flight Delay</h3>
+                        <p><strong>Flight #:</strong> FX 2143</p>
+                        <p><strong>Estimated Departure:</strong> 09/30/2025 – 09:45 CST</p>
+                        <p><strong>Impact:</strong> 5,600 packages delayed</p>
+                    </div>
+                    <div class="extra-details">
+                        <h3>Flight Delay</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-T07832</p>
+                        <p><strong>Flight Number:</strong> FX 2143 (Memphis to Anchorage)</p>
+                        <p><strong>Severity Level:</strong> 3 (Moderate-High)</p>
+                        <p><strong>Delay Reason:</strong> Mechanical inspection required</p>
+                        <p><strong>Original Departure:</strong> 09/30/2025 - 06:00 CST</p>
+                        <p><strong>New Departure:</strong> 09/30/2025 - 09:45 CST (3h 45m delay)</p>
+                        </br>
+                        <p><strong>Packages Affected:</strong> 5,600 (mostly Next Day Air)</p>
+                        <p><strong>Destination Impact:</strong> Anchorage, Seattle, Portland connections affected</p>
+                        <p><strong>Notes:</strong> Aircraft tail #N872FD undergoing hydraulic system check. Backup aircraft being prepared. Customer notifications sent</p>
+                    </div>
                 </div>
             </div>
+            
+            <!-- TIME STACK-2 (RED) -->
             <div class="stack-2 alert-card red">
                 <div class="card-header red">
                     <img class="card-icon" id="time" src="./Images/Icons/time.png" alt="Time">
                     <h2>Time Alert</h2>
                     <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
                 </div>
-
                 <div class="card-body">
-                    <h3>Flight Delay</h3>
-                    <p><strong>Flight #:</strong> FX 2143</p>
-                    <p><strong>Estimated Departure:</strong> 09/30/2025 – 09:45 CST</p>
-                    <p><strong>Impact:</strong> 5,600 packages delayed</p>
+                    <div class="main-details">
+                        <h3>Sort Processing Delay</h3>
+                        <p><strong>Location:</strong> Oakland Hub (OAK01)</p>
+                        <p><strong>Current Delay:</strong> 2 hours 15 minutes</p>
+                        <p><strong>Impact:</strong> 8,200 packages pending</p>
+                    </div>
+                    <div class="extra-details">
+                        <h3>Sort Processing Delay</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-T07845</p>
+                        <p><strong>Location:</strong> OAK01 - Main Sort Facility</p>
+                        <p><strong>Severity Level:</strong> 3 (Moderate-High)</p>
+                        <p><strong>Delay Reason:</strong> Conveyor system malfunction</p>
+                        <p><strong>Started At:</strong> 09/30/2025 - 03:30 PST</p>
+                        <p><strong>Expected Resolution:</strong> 09/30/2025 - 08:00 PST</p>
+                        </br>
+                        <p><strong>Packages Affected:</strong> 8,200 packages in queue</p>
+                        <p><strong>Service Types:</strong> Priority Overnight, 2Day, Ground</p>
+                        <p><strong>Notes:</strong> Belt 3A motor failure. Maintenance crew on-site. Manual sorting in progress for priority shipments. 4 delivery routes delayed</p>
+                    </div>
                 </div>
             </div>
+            
+            <!-- TIME STACK-3 (YELLOW) -->
             <div class="stack-3 alert-card yellow">
                 <div class="card-header yellow">
                     <img class="card-icon" id="time" src="./Images/Icons/time.png" alt="Time">
                     <h2>Time Alert</h2>
                     <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
                 </div>
-
                 <div class="card-body">
-                    <h3>Flight Delay</h3>
-                    <p><strong>Flight #:</strong> FX 2143</p>
-                    <p><strong>Estimated Departure:</strong> 09/30/2025 – 09:45 CST</p>
-                    <p><strong>Impact:</strong> 5,600 packages delayed</p>
+                    <div class="main-details">
+                        <h3>Customs Processing Slow</h3>
+                        <p><strong>Location:</strong> JFK International Gateway (JFK02)</p>
+                        <p><strong>Current Delay:</strong> 45 minutes</p>
+                        <p><strong>Impact:</strong> 1,800 international packages</p>
+                    </div>
+                    <div class="extra-details">
+                        <h3>Customs Processing Slow</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-T07851</p>
+                        <p><strong>Location:</strong> JFK02 - International Clearance</p>
+                        <p><strong>Severity Level:</strong> 2 (Low-Moderate)</p>
+                        <p><strong>Delay Reason:</strong> Higher than normal volume + reduced customs staff</p>
+                        <p><strong>Started At:</strong> 09/30/2025 - 08:00 EST</p>
+                        <p><strong>Expected Resolution:</strong> 09/30/2025 - 11:00 EST</p>
+                        </br>
+                        <p><strong>Packages Affected:</strong> 1,800 inbound international shipments</p>
+                        <p><strong>Countries of Origin:</strong> UK, Germany, Japan, China</p>
+                        <p><strong>Notes:</strong> CBP experiencing system slowdown. No hold or inspection issues. Processing continuing but at 70% normal speed</p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- VOLUME ALERTS -->
         <div class="stack" data-index="2">
+            <!-- VOLUME STACK-1 (YELLOW) -->
             <div class="stack-1 alert-card yellow">
                 <div class="card-header yellow">
                     <img class="card-icon" id="volume" src="./Images/Icons/package.png" alt="Volume">
                     <h2>Volume Alert</h2>
                     <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
                 </div>
-
                 <div class="card-body">
-                    <h3>Belt Damage</h3>
-                    <p><strong>Location:</strong> DFW02 – Sorting Belt Line 7</p>
-                    <p><strong>Description:</strong> Container C-571 sustained structural damage during forklift transfer.</p>
-                    <p><strong>Estimated Recovery Time:</strong> 4 hours.</p>
+                    <div class="main-details">
+                        <h3>Belt Damage</h3>
+                        <p><strong>Location:</strong> DFW02 – Sorting Belt Line 7</p>
+                        <p><strong>Description:</strong> Container C-571 sustained structural damage during forklift transfer</p>
+                        <p><strong>Estimated Recovery Time:</strong> 4 hours</p>
+                    </div>
+                    <div class="extra-details">
+                        <h3>Belt Damage</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-V02847</p>
+                        <p><strong>Location:</strong> DFW02 - Sorting Belt Line 7</p>
+                        <p><strong>Severity Level:</strong> 2 (Low-Moderate)</p>
+                        <p><strong>Incident Time:</strong> 09/30/2025 - 04:20 CST</p>
+                        <p><strong>Estimated Repair Complete:</strong> 09/30/2025 - 08:30 CST</p>
+                        </br>
+                        <p><strong>Equipment Damage:</strong> Belt motor mount cracked, 6-foot section needs replacement</p>
+                        <p><strong>Impact:</strong> Line 7 offline, packages rerouted to Lines 5 and 8 (operating at 85% capacity)</p>
+                        <p><strong>Notes:</strong> Forklift operator error during container transfer. Parts en route from warehouse. Safety review scheduled</p>
+                    </div>
                 </div>
             </div>
+            
+            <!-- VOLUME STACK-2 (GREEN) -->
             <div class="stack-2 alert-card green">
                 <div class="card-header green">
                     <img class="card-icon" id="volume" src="./Images/Icons/package.png" alt="Volume">
                     <h2>Volume Alert</h2>
                     <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
                 </div>
-
                 <div class="card-body">
-                    <h3>Belt Damage</h3>
-                    <p><strong>Location:</strong> DFW02 – Sorting Belt Line 7</p>
-                    <p><strong>Description:</strong> Container C-571 sustained structural damage during forklift transfer.</p>
-                    <p><strong>Estimated Recovery Time:</strong> 4 hours.</p>
+                    <div class="main-details">
+                        <h3>Peak Volume Handled</h3>
+                        <p><strong>Location:</strong> Chicago Rockford (RFD01) – All Zones</p>
+                        <p><strong>Volume Processed:</strong> 142,000 packages</p>
+                        <p><strong>Status:</strong> Operating smoothly at 103% capacity</p>
+                    </div>
+                    <div class="extra-details">
+                        <h3>Peak Volume Handled</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-V02853</p>
+                        <p><strong>Location:</strong> RFD01 - All Processing Zones</p>
+                        <p><strong>Severity Level:</strong> 0 (Informational)</p>
+                        <p><strong>Time Period:</strong> 09/30/2025 - 00:00 to 06:00 CST</p>
+                        <p><strong>Status:</strong> Successfully Completed</p>
+                        </br>
+                        <p><strong>Volume Processed:</strong> 142,000 packages (12% above forecast)</p>
+                        <p><strong>Performance:</strong> All service commitments met, zero delays</p>
+                        <p><strong>Notes:</strong> Unexpected surge from e-commerce client flash sale. Overnight supervisor called in additional sorters. Hub performed exceptionally well</p>
+                    </div>
                 </div>
             </div>
+            
+            <!-- VOLUME STACK-3 (GREEN) -->
             <div class="stack-3 alert-card green">
                 <div class="card-header green">
                     <img class="card-icon" id="volume" src="./Images/Icons/package.png" alt="Volume">
                     <h2>Volume Alert</h2>
                     <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
                 </div>
-
                 <div class="card-body">
-                    <h3>Belt Damage</h3>
-                    <p><strong>Location:</strong> DFW02 – Sorting Belt Line 7</p>
-                    <p><strong>Description:</strong> Container C-571 sustained structural damage during forklift transfer.</p>
-                    <p><strong>Estimated Recovery Time:</strong> 4 hours.</p>
+                    <div class="main-details">
+                        <h3>Light Volume Day</h3>
+                        <p><strong>Location:</strong> Phoenix Gateway (PHX01) – Inbound</p>
+                        <p><strong>Volume Received:</strong> 18,500 packages</p>
+                        <p><strong>Expected:</strong> 28,000 packages</p>
+                    </div>
+                    <div class="extra-details">
+                        <h3>Light Volume Day</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-V02860</p>
+                        <p><strong>Location:</strong> PHX01 - Inbound Processing</p>
+                        <p><strong>Severity Level:</strong> 0 (Informational)</p>
+                        <p><strong>Time Period:</strong> 09/30/2025 - Night Sort</p>
+                        <p><strong>Status:</strong> Normal Operations</p>
+                        </br>
+                        <p><strong>Volume:</strong> 18,500 packages (34% below forecast)</p>
+                        <p><strong>Efficiency:</strong> All packages sorted 90 minutes ahead of schedule</p>
+                        <p><strong>Notes:</strong> Light volume due to regional holiday in Southwest. Staff released early. Good opportunity for facility maintenance and equipment checks</p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- WEATHER ALERTS -->
         <div class="stack" data-index="3">
+            <!-- WEATHER STACK-1 (YELLOW) -->
             <div class="stack-1 alert-card yellow">
                 <div class="card-header yellow">
                     <img class="card-icon" id="weather" src="./Images/Icons/weather.png" alt="Weather">
                     <h2>Severe Weather</h2>
                     <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
                 </div>
-
                 <div class="card-body">
-                    <h3>Wind Advisory</h3>
-                    <p><strong>Location:</strong> Newark Liberty Hub (EWR01)</p>
-                    <p><strong>Condition:</strong> High Winds / Ground</p>
-                    <p><strong>Stop Time:</strong> 11:45 AM EST</p>
+                    <div class="main-details">
+                        <h3>Wind Advisory</h3>
+                        <p><strong>Location:</strong> Newark Liberty Hub (EWR01)</p>
+                        <p><strong>Condition:</strong> High Winds / Ground Stop</p>
+                        <p><strong>Stop Time:</strong> 11:45 AM EST</p>
+                    </div>
+                    <div class="extra-details">
+                        <h3>Wind Advisory</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-W09124</p>
+                        <p><strong>Location:</strong> EWR01 - Newark Liberty Hub</p>
+                        <p><strong>Severity Level:</strong> 2 (Low-Moderate)</p>
+                        <p><strong>Weather Type:</strong> High Winds</p>
+                        <p><strong>Started At:</strong> 09/30/2025 - 09:30 EST</p>
+                        <p><strong>Expected End:</strong> 09/30/2025 - 14:00 EST</p>
+                        </br>
+                        <p><strong>Wind Speed:</strong> Sustained 35-40 mph, gusts up to 55 mph</p>
+                        <p><strong>Impact:</strong> Ground operations paused, 6 aircraft holding, ramp unsafe for loading</p>
+                        <p><strong>Notes:</strong> FAA issued ground stop at 11:45 AM. Container securing operations active. Flight crews on standby. Resume expected by 2:00 PM</p>
+                    </div>
                 </div>
             </div>
+            
+            <!-- WEATHER STACK-2 (GREEN) -->
             <div class="stack-2 alert-card green">
                 <div class="card-header green">
                     <img class="card-icon" id="weather" src="./Images/Icons/weather.png" alt="Weather">
                     <h2>Severe Weather</h2>
                     <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
                 </div>
-
                 <div class="card-body">
-                    <h3>Wind Advisory</h3>
-                    <p><strong>Location:</strong> Newark Liberty Hub (EWR01)</p>
-                    <p><strong>Condition:</strong> High Winds / Ground</p>
-                    <p><strong>Stop Time:</strong> 11:45 AM EST</p>
+                    <div class="main-details">
+                        <h3>Weather Cleared</h3>
+                        <p><strong>Location:</strong> Atlanta Hub (ATL01)</p>
+                        <p><strong>Previous Condition:</strong> Thunderstorms</p>
+                        <p><strong>Status:</strong> All Clear - Operations Resumed</p>
+                    </div>
+                    <div class="extra-details">
+                        <h3>Weather Cleared</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-W09118</p>
+                        <p><strong>Location:</strong> ATL01 - Atlanta Hub</p>
+                        <p><strong>Severity Level:</strong> 0 (Resolved)</p>
+                        <p><strong>Weather Type:</strong> Thunderstorms (Cleared)</p>
+                        <p><strong>Started At:</strong> 09/30/2025 - 05:15 EST</p>
+                        <p><strong>Cleared At:</strong> 09/30/2025 - 07:45 EST</p>
+                        </br>
+                        <p><strong>Delay Duration:</strong> 2 hours 30 minutes total</p>
+                        <p><strong>Impact:</strong> 4 flights delayed, now departing on revised schedule</p>
+                        <p><strong>Notes:</strong> Storm cell moved northeast as predicted. All aircraft cleared for operations. Ground crews catching up on backlog. Expect normal operations by 10:00 AM</p>
+                    </div>
                 </div>
             </div>
         </div>
-
 
         <div id="bottomSwitch">
             <img onclick="activateStack(0)" src="./Images/Icons/staff-dark.png" alt="Staff" title="Staff">
