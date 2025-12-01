@@ -36,7 +36,7 @@
     <main class="alert-container">
 
         <!-- STAFF ALERTS -->
-        <div class="stack">
+        <div class="stack" data-index="0">
             <div class="stack-1 alert-card red">
                 <div class="card-header red">
                     <img class="card-icon" id="staff" src="./Images/Icons/staff.png" alt="Staff">
@@ -82,7 +82,7 @@
         </div>
 
         <!-- TIME ALERTS -->
-        <div class="stack">
+        <div class="stack" data-index="1">
             <div class="stack-1 alert-card red">
                 <div class="card-header red">
                     <img class="card-icon" id="time" src="./Images/Icons/time.png" alt="Time">
@@ -128,7 +128,7 @@
         </div>
 
         <!-- VOLUME ALERTS -->
-        <div class="stack">
+        <div class="stack" data-index="2">
             <div class="stack-1 alert-card yellow">
                 <div class="card-header yellow">
                     <img class="card-icon" id="volume" src="./Images/Icons/package.png" alt="Volume">
@@ -174,7 +174,7 @@
         </div>
 
         <!-- WEATHER ALERTS -->
-        <div class="stack">
+        <div class="stack" data-index="3">
             <div class="stack-1 alert-card yellow">
                 <div class="card-header yellow">
                     <img class="card-icon" id="weather" src="./Images/Icons/weather.png" alt="Weather">
@@ -203,6 +203,14 @@
                     <p><strong>Stop Time:</strong> 11:45 AM EST</p>
                 </div>
             </div>
+        </div>
+
+
+        <div id="bottomSwitch">
+            <img onclick="activateStack(0)" src="./Images/Icons/staff-dark.png" alt="Staff">
+            <img onclick="activateStack(1)" src="./Images/Icons/time-dark.png" alt="Time">
+            <img onclick="activateStack(2)" src="./Images/Icons/package-dark.png" alt="Volume">
+            <img onclick="activateStack(3)" src="./Images/Icons/weather-dark.png" alt="Weather">
         </div>
 
     </main>
