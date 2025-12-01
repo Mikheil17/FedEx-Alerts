@@ -6,10 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const bottomIcons = Array.from(bottomSwitch.querySelectorAll("img"));
     const hideToggle = document.getElementById("hide");
     const logo = document.getElementById("logo");
+    const managerToggle = document.getElementById("manager");
 
     let activeIndex = null;
     let hiddenCards = []; // Store {card, stackIndex, originalParent} objects
     let showingHidden = false; // Track if we're in "show hidden" mode
+    let managerMode = false; // Track if manager mode is active
 
     /* ======================================================
        Create and update badge for hidden count
@@ -31,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         font-size: 0.75rem;
         font-weight: bold;
         pointer-events: none;
-    `;
+    `;   
     
     // Wrap hide icon in a container for positioning
     const hideContainer = document.createElement("div");
@@ -51,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
     /* ======================================================
        Logo click - reset view
     ====================================================== */
@@ -61,6 +62,118 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         resetView(); // Exit zoom mode
     });
+
+    /* ======================================================
+       Manager Mode Toggle
+    ====================================================== */
+    managerToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        managerMode = !managerMode;
+        
+        // Visual feedback for manager mode
+        if (managerMode) {
+            managerToggle.style.opacity = "1";
+            managerToggle.style.transform = "scale(1.1)";
+            // Change all hide icons to X
+            document.querySelectorAll(".card-hide-icon").forEach(icon => {
+                icon.dataset.originalSrc = icon.src;
+                icon.src = "./Images/Icons/x.png";
+                icon.style.filter = "brightness(0) invert(1)"; // Make it white
+            });
+        } else {
+            managerToggle.style.opacity = "0.8";
+            managerToggle.style.transform = "scale(1)";
+            // Restore hide icons
+            document.querySelectorAll(".card-hide-icon").forEach(icon => {
+                if (icon.dataset.originalSrc) {
+                    icon.src = icon.dataset.originalSrc;
+                    icon.style.filter = "";
+                }
+            });
+        }
+    });
+
+    /* ======================================================
+       Create confirmation modal
+    ====================================================== */
+    function createConfirmModal(onConfirm) {
+        // Create overlay
+        const overlay = document.createElement("div");
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        `;
+        
+        // Create modal
+        const modal = document.createElement("div");
+        modal.style.cssText = `
+            background: #f5f5f5;
+            border-radius: 0.3rem;
+            border: 0.3rem solid #4D148C;
+            max-width: 40rem;
+            text-align: center;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+        `;
+        
+        modal.innerHTML = `
+            <h2 style= "background: #4D148C; text-align: left; padding: 0.5rem; color: white; font-size: 1.5rem;">
+             <img style= "width: 2rem; height: 2rem; filter: brightness(0) invert(1); margin: 0;"src="./Images/Icons/warning.png"> Warning</h2>
+            <p style="margin: 1rem 2rem; font-size: 1.3rem; text-align: center">Once you commit this action, </br> it cannot be undone.</br></br> Proceed anyway?</p>
+            <div style="display: flex; gap: 1rem; justify-content: space-around; margin: 0.5rem 1rem;">
+                <button id="modal-cancel" style="
+                    padding: 0.4rem 4rem;
+                    font-size: 1.3rem;
+                    border: 2px solid #666;
+                    background: white;
+                    color: #666;
+                    border-radius: 0.8rem;
+                    cursor: pointer;
+                    font-weight: bold;
+                ">Cancel</button>
+                <button id="modal-confirm" style="
+                    padding: 0.4rem 4rem;
+                    font-size: 1.3rem;
+                    border: none;
+                    background: #4D148C;
+                    color: white;
+                    border-radius: 0.8rem;
+                    cursor: pointer;
+                    font-weight: bold;
+                ">Confirm</button>
+            </div>
+        `;
+        
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+        
+        // Button handlers
+        const cancelBtn = modal.querySelector("#modal-cancel");
+        const confirmBtn = modal.querySelector("#modal-confirm");
+        
+        cancelBtn.addEventListener("click", () => {
+            overlay.remove();
+        });
+        
+        confirmBtn.addEventListener("click", () => {
+            overlay.remove();
+            onConfirm();
+        });
+        
+        // Click outside to cancel
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) {
+                overlay.remove();
+            }
+        });
+    }
 
     /* ======================================================
        Activate a stack (zoom mode)
@@ -202,6 +315,45 @@ document.addEventListener("DOMContentLoaded", () => {
         newHideIcon.addEventListener("click", (e) => {
             e.stopPropagation();
             
+            // MANAGER MODE - DELETE PERMANENTLY
+            if (managerMode) {
+                createConfirmModal(() => {
+                    // Permanently delete the card
+                    card.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+                    card.style.opacity = "0";
+                    card.style.transform = "scale(0.95)";
+                    
+                    setTimeout(() => {
+                        card.remove();
+                        
+                        // Also remove from hiddenCards if it's there
+                        const hiddenIndex = hiddenCards.findIndex(item => item.card === card);
+                        if (hiddenIndex !== -1) {
+                            hiddenCards.splice(hiddenIndex, 1);
+                            updateBadge();
+                        }
+                        
+                        // Reorganize remaining cards
+                        reorganizeStack(stack);
+                        
+                        // If stack is now empty, hide it
+                        if (stack.querySelectorAll(".alert-card").length === 0) {
+                            stack.style.display = "none";
+                            if (activeIndex === stackIndex) {
+                                resetView();
+                            }
+                        }
+                        
+                        // If in hidden view and no cards left, exit
+                        if (showingHidden && hiddenCards.length === 0) {
+                            hideToggle.click();
+                        }
+                    }, 400);
+                });
+                return;
+            }
+            
+            // NORMAL MODE - HIDE/RESTORE
             // If in hidden view, restore the card
             if (showingHidden) {
                 // Find this card in hiddenCards array
