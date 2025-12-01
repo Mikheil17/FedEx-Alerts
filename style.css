@@ -282,6 +282,11 @@ html {
     font-size: 12px;
 }
 
+body {
+        overflow-y: auto;
+        overflow-x: hidden;
+}
+
 .alert-container {
     display: flex;
     flex-direction: column;
@@ -336,4 +341,19 @@ html {
     height: 6rem;
 }
 
+}
+
+@media (max-height: 600px) {
+
+.card-body h3 {
+
+    font-size: 1rem;
+} 
+.card-body p {
+    font-size: 0.8rem;
+}
+
+.card-body {
+    padding: 1rem;
+}
 }
