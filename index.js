@@ -7,11 +7,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const hideToggle = document.getElementById("hide");
     const logo = document.getElementById("logo");
     const managerToggle = document.getElementById("manager");
+    const trendToggle = document.getElementById("trend");
+    const trendsPage = document.getElementById("trends-page");
+    
 
     let activeIndex = null;
     let hiddenCards = []; // Store {card, stackIndex, originalParent} objects
     let showingHidden = false; // Track if we're in "show hidden" mode
     let managerMode = false; // Track if manager mode is active
+    
+
+    /* ======================================================
+       Trends Page Toggle
+    ====================================================== */
+    trendToggle.addEventListener("click", () => {
+        if (trendsPage.style.display === "flex") {
+            trendsPage.style.display = "none";
+        } else {
+            trendsPage.style.display = "flex";
+        }
+    });
 
     /* ======================================================
        Create and update badge for hidden count
@@ -66,6 +81,25 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ======================================================
        Manager Mode Toggle
     ====================================================== */
+    function updateIconAppearance() {
+        document.querySelectorAll(".card-hide-icon").forEach(icon => {
+            if (managerMode) {
+                if (!icon.dataset.originalSrc) {
+                    icon.dataset.originalSrc = icon.src;
+                }
+                icon.src = "./Images/Icons/x.png";
+                icon.style.filter = "brightness(0) invert(1)"; // Make it white
+                icon.title = "Delete";
+            } else {
+                if (icon.dataset.originalSrc) {
+                    icon.src = icon.dataset.originalSrc;
+                    icon.style.filter = "";
+                    icon.title = "Hide";
+                }
+            }
+        });
+    }
+
     managerToggle.addEventListener("click", (e) => {
         e.stopPropagation();
         managerMode = !managerMode;
@@ -74,23 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (managerMode) {
             managerToggle.style.opacity = "1";
             managerToggle.style.transform = "scale(1.1)";
-            // Change all hide icons to X
-            document.querySelectorAll(".card-hide-icon").forEach(icon => {
-                icon.dataset.originalSrc = icon.src;
-                icon.src = "./Images/Icons/x.png";
-                icon.style.filter = "brightness(0) invert(1)"; // Make it white
-            });
         } else {
             managerToggle.style.opacity = "0.8";
             managerToggle.style.transform = "scale(1)";
-            // Restore hide icons
-            document.querySelectorAll(".card-hide-icon").forEach(icon => {
-                if (icon.dataset.originalSrc) {
-                    icon.src = icon.dataset.originalSrc;
-                    icon.style.filter = "";
-                }
-            });
         }
+        
+        updateIconAppearance();
     });
 
     /* ======================================================
@@ -289,6 +312,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 hiddenItem.card.style.display = "flex";
             });
             
+            // Update icon appearance for cards in hidden view
+            updateIconAppearance();
+            
         } else {
             // Exit hidden view mode
             hideToggle.style.opacity = "0.8";
@@ -301,6 +327,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 container.appendChild(stack);
             });
             container.appendChild(bottomSwitch);
+            
+            // Update icon appearance for cards back in normal view
+            updateIconAppearance();
         }
     });
 
@@ -392,6 +421,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         
                         // Re-setup the hide icon for this card
                         setupHideIcon(card, hiddenItem.originalParent, hiddenItem.stackIndex);
+                        
+                        // Update icon appearance based on manager mode
+                        updateIconAppearance();
                         
                         // Update badge count
                         updateBadge();
@@ -508,25 +540,3 @@ function activateNeighbor(direction) {
 
   activateStack(next);
 }
-
-stacks.forEach((stack, index) => {
-  stack.addEventListener("click", e => {
-    e.stopPropagation();
-    activateStack(index);
-  });
-
-  // Inside a stack: detect behind cards
-  stack.querySelectorAll(".alert-card").forEach(card => {
-    card.addEventListener("click", e => {
-      e.stopPropagation();
-
-      if (!stack.classList.contains("active")) return;
-
-      if (card.classList.contains("stack-2")) {
-        activateNeighbor(-1); // left card
-      } else if (card.classList.contains("stack-3")) {
-        activateNeighbor(1); // right card
-      }
-    });
-  });
-});

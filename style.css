@@ -313,6 +313,34 @@ body {
     display: none;
 }
 
+#history-page {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+#history-page.active {
+    display: flex;
+}
+
+#trends-page {
+    position: fixed;
+    top: 16vh;
+    left: 0;
+    width: 100vw;
+    height: 84vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+#trends-page img {
+    max-height: 100%;
+    width: 100vw;
+    object-fit: stretch;
+}
 
 
 @media (max-width: 600px) {
@@ -321,7 +349,7 @@ html {
 }
 
 body {
-        overflow-y: auto;
+        overflow-y: hidden;
         overflow-x: hidden;
 }
 
@@ -366,7 +394,7 @@ body {
 }
 
 #bottomSwitch {
-    bottom: 6rem;
+    bottom: 3rem;
     gap: 3rem;
 }
 
