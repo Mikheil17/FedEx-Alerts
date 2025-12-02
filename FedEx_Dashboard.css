@@ -1,7 +1,35 @@
-h1
+.header-1
 {
     background-color: #623D95;
     margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-2
+{
+    background-color: #997BC4;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-3
+{
+    background-color: #C3AEE1;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5%;
+    padding-left: 15%;
+    padding-right: 20%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 body
@@ -9,20 +37,320 @@ body
     margin: 0;
 }
 
+.alignRight
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-right: 30px;
+}
+
 .fedexLogo
 {
     width: 210px;
-    height: 100px;
+    max-width: 100%;
+    height: auto;
 }
 
 .textFont
 {
     color: #FFFFFF;
-    position: absolute;
-    height: 43px;
-    right: 750px;
-    top: 50px;
     font-family: "Inria Sans", sans-serif;
     font-weight: bold;
     font-style: normal;
+    font-size: 30px;
+}
+
+.timeDisplay
+{
+    color: #FFFFFF;
+    font-family: "Inria Sans", sans-serif;
+    font-size: 25px;
+}
+
+.dateDisplay
+{
+    color: #FFFFFF;
+    font-family: "Inria Sans", sans-serif;
+    font-size: 25px;
+}
+
+.clickedHistory
+{
+    width: 55px;
+    max-width: 100%;
+    height: auto;
+    padding-left: 30px;
+}
+
+.trends
+{
+    width: 55px;
+    max-width: 100%;
+    height: auto;
+}
+
+.hide
+{
+    width: 55px;
+    max-width: 100%;
+    height: auto;
+}
+
+.filter
+{
+    width: 55px;
+    max-width: 100%;
+    height: auto;
+    padding-right: 30px;
+}
+
+.sysHealth
+{
+    color: #FFFFFF;
+    font-family: "Inria Sans", sans-serif;
+    font-size: 20px;
+}
+
+.fillFont
+{
+    align-items: center;
+    color: #2e2e2e;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: 24px;
+}
+
+.fillText
+{
+    gap: 30px;
+}
+
+.filterArrow
+{
+    width: 20px;
+    max-width: 100%;
+    height: auto;
+}
+
+.staffFilterBtn
+{
+    width: 50px;
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.timeFilterBtn
+{
+    width: 50px;
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.volumeFilterBtn
+{
+    width: 50px;
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.stormFilterBtn
+{
+    width: 50px;
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+.searchBar-1
+{
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    height: 30px;
+    border: solid;
+}
+
+.searchBar-2
+{
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    height: 30px;
+    border: solid;
+}
+
+.searchBar-3
+{
+    width: 330px;
+    height: 30px;
+    gap: 10px;
+    border: solid;
+}
+
+.fillFontBold
+{
+    align-items: center;
+    color: #2e2e2e;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.bulletRemover
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.criticalCardHeader
+{
+    background-color: #E92626;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 0.3vw solid #E92626;
+    border-left: 0.3vw solid #E92626;
+    border-right: 0.3vw solid #E92626;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    padding: 1%;
+    gap: 5%;
+}
+
+.mediumCardHeader
+{
+    background-color: #FFB120;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 0.3vw solid #FFB120;
+    border-left: 0.3vw solid #FFB120;
+    border-right: 0.3vw solid #FFB120;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    padding: 1%;
+    gap: 5%;
+}
+
+.lowCardHeader
+{
+    background-color: #25D10E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 0.3vw solid #25D10E;
+    border-left: 0.3vw solid #25D10E;
+    border-right: 0.3vw solid #25D10E;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    padding: 1%;
+    gap: 5%;
+}
+
+.cardCenter
+{
+    flex: 20;
+    text-align: center;
+}
+
+.cardIcon
+{
+    width: 55px;
+    max-width: 100%;
+    height: auto;
+    margin-right: auto;
+    flex: 0;
+    text-align: center;
+    text-align: left;
+}
+
+.cardTitle
+{
+    display: block;
+    align-items: center;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    flex: 1;
+    text-align: center;
+}
+
+.cardRight
+{
+    flex: 1;
+    text-align: center;
+    text-align: right;
+}
+
+.criticalCardText
+{
+    background-color: #FFFFFF;
+    text-align: center;
+    border-bottom: 0.3vw solid #E92626;
+    border-left: 0.3vw solid #E92626;
+    border-right: 0.3vw solid #E92626;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 5%;
+}
+
+.mediumCardText
+{
+    background-color: #FFFFFF;
+    text-align: center;
+    border-bottom: 0.3vw solid #FFB120;
+    border-left: 0.3vw solid #FFB120;
+    border-right: 0.3vw solid #FFB120;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 5%;
+}
+
+.lowCardText
+{
+    background-color: #FFFFFF;
+    text-align: center;
+    border-bottom: 0.3vw solid #25D10E;
+    border-left: 0.3vw solid #25D10E;
+    border-right: 0.3vw solid #25D10E;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 5%;
+}
+
+.cardTypeBold
+{
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 24px;
+}
+
+.cardTypeNormal
+{
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
 }
