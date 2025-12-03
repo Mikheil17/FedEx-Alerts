@@ -11,14 +11,104 @@ document.addEventListener("DOMContentLoaded", () => {
     const trendsPage = document.getElementById("trends-page");
     const historyToggle = document.getElementById("history");
     const historyContainer = document.querySelector(".history-cards");
-    
+    const filterToggle = document.getElementById("filter");
+    const filterSection = document.querySelector(".filter-section");
+    const filterIcons = document.querySelectorAll(".filter-icon");
+    const severityBtns = document.querySelectorAll(".severity-btn");
 
     let activeIndex = null;
-    let hiddenCards = []; // Store {card, stackIndex, originalParent} objects
-    let showingHidden = false; // Track if we're in "show hidden" mode
-    let managerMode = false; // Track if manager mode is active
+    let hiddenCards = [];
+    let showingHidden = false;
+    let managerMode = false;
     let showingHistory = false;
-    
+    let activeCategory = null;
+    let activeSeverity = null;
+
+
+    /* ======================================================
+    Filter Page
+    ====================================================== */
+
+    filterToggle.addEventListener("click", () => {
+        filterSection.classList.toggle("active");
+        
+        if (filterSection.classList.contains("active")) {
+            historyContainer.style.height = "62vh";
+        } else {
+            historyContainer.style.height = "84vh";
+        }
+        
+        // When filter opens, also open history view
+        if (filterSection.classList.contains("active") && !showingHistory) {
+            historyToggle.click(); // Open history
+        }    
+
+    });
+
+
+    // Severity filter listeners
+    severityBtns.forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+
+            // Toggle severity
+            if (activeSeverity === index) {
+                btn.classList.remove("selected");
+                activeSeverity = null;
+            } else {
+                severityBtns.forEach(b => b.classList.remove("selected"));
+                btn.classList.add("selected");
+                activeSeverity = index;
+            }
+
+            applyFilters();
+        });
+    });
+
+    filterIcons.forEach((icon, index) => {
+        icon.addEventListener("click", () => {
+
+            // Toggle category
+            if (activeCategory === index) {
+                icon.classList.remove("pressed");
+                activeCategory = null;
+            } else {
+                filterIcons.forEach(i => i.classList.remove("pressed"));
+                icon.classList.add("pressed");
+                activeCategory = index;
+            }
+
+            applyFilters();
+        });
+    });
+
+    function applyFilters() {
+        const historyCards = historyContainer.querySelectorAll(".alert-card");
+        const types = ["#staff", "#time", "#volume", "#weather"];
+
+        historyCards.forEach(card => {
+            // CATEGORY MATCH
+            let categoryMatch = true;
+            if (activeCategory !== null) {
+                categoryMatch = card.querySelector(types[activeCategory]) !== null;
+            }
+
+            // SEVERITY MATCH
+            let severityMatch = true;
+            if (activeSeverity !== null) {
+                if (activeSeverity === 0) severityMatch = card.classList.contains("yellow");
+                else if (activeSeverity === 1) severityMatch = card.classList.contains("red");
+                else if (activeSeverity === 2) severityMatch = card.classList.contains("green");
+            }
+
+            // SHOW ONLY IF BOTH MATCH
+            if (categoryMatch && severityMatch) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+
 
     /* ======================================================
        Trends Page Toggle
@@ -346,6 +436,12 @@ document.addEventListener("DOMContentLoaded", () => {
             historyToggle.style.transform = "scale(1.1)";
             container.classList.add("hide");
             historyContainer.classList.add("active");
+
+            if (filterSection.classList.contains("active")) {
+                historyContainer.style.height = "62vh";
+            } else {
+                historyContainer.style.height = "84vh";
+            }
             
         } else {
             // EXITING HISTORY VIEW
@@ -353,6 +449,10 @@ document.addEventListener("DOMContentLoaded", () => {
             historyToggle.style.transform = "scale(1)";
             container.classList.remove("hide");
             historyContainer.classList.remove("active");
+
+            if(filterSection.classList.contains("active")) {
+                filterSection.classList.toggle("active");
+            }
         }
     });
 

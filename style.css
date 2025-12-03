@@ -345,6 +345,80 @@ body {
     display: none;
 }
 
+/* FILTER SECTION */
+.filter-section {
+    background: linear-gradient(to bottom, #b89dd9 0%, #d4c5e8 100%);
+    display: none;
+}
+
+.filter-settings {
+    width: 60vw;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1rem 2rem;
+    display: flex;
+}
+.filter-section.active {
+    display: flex;
+    justify-content: center;
+}
+
+.filter-row {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    align-items: center;
+    gap: 5rem;
+}
+
+.filter-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+}
+
+.filter-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.filter-icon:hover, .filter-icon.pressed{
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.date-input, .location-input {
+    padding: 0.2rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #9166be;
+    border-radius: 0.2rem;
+    background: white;
+    outline: none;
+}
+
+.date-input {
+    width: 10rem;
+}
+
+.location-input {
+    width: 15rem;
+}
+
+.severity-btn, .location-text, .filter-label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: black;
+}
+
+.severity-btn { cursor: pointer;}
+
+.severity-btn:hover, .severity-btn.selected {
+    color: #FF6200;
+}
+
 @media (max-width: 600px) {
 html {
     font-size: 12px;
@@ -373,7 +447,7 @@ body {
 
 .location {
     font-size: 1.5rem;
-    margin-right: 5%;
+    margin-right: 15%;
     margin-top: 4%;
 }
 .sub-header {
@@ -419,6 +493,15 @@ body {
     overflow: hidden !important;
 }
 
+.filter-settings {
+    width: 100vw;
+    padding: 1rem 0.7rem;
+}    
+.filter-row {
+    gap: 0;
+    grid-template-columns: 8rem 1fr;
+}
+
 }
 
 @media (max-height: 600px) {
@@ -448,4 +531,17 @@ body {
     height: 1.3rem;
 }
 
+.severity-btn, .location-text, .filter-label {
+    font-size: 1rem;
+}
+
+.filter-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.date-input, .location-input {
+    padding: 0.1rem 0.8rem;
+    font-size: 0.8rem;
+}
 }
