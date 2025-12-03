@@ -373,12 +373,72 @@
             <img onclick="activateStack(1)" src="./Images/Icons/time-dark.png" alt="Time" title="Time">
             <img onclick="activateStack(2)" src="./Images/Icons/package-dark.png" alt="Volume" title="Volume">
             <img onclick="activateStack(3)" src="./Images/Icons/weather-dark.png" alt="Weather" title="Weather">
-        </div>
+        </div>    
 
         <div id="trends-page">
-            <img src="./Images/trends.png" alt="Trends">
+            <img id="trend-desktop" src="./Images/Trends-desktop.png" alt="Trends">
+            <img id="trend-phone" src="./Images/Trends-phone.png" alt="Trends">
+            
         </div>  
     </main>
+
+    <div class="history-cards">
+            <div class="alert-card green">
+                <div class="card-header green">
+                    <img class="card-icon" id="time" src="./Images/Icons/time.png" alt="Time">
+                    <h2>Time Alert</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
+                </div>
+                <div class="card-body">
+                    <div class="main-details">
+                        <h3>Customs Delay</h3>
+                        <p><strong>Location:</strong> Miami International Gateway (MIA02)</p>
+                        <p><strong>Current Delay:</strong> 4 hours 20 minutes</p>
+                        <p><strong>Impact:</strong> 3,200 international packages pending</p>
+                    </div>
+                    <div class="extra-details">
+                        <h3>Customs Delay</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-T08932</p>
+                        <p><strong>Location:</strong> MIA02 - International Processing</p>
+                        <p><strong>Severity Level:</strong> 3 (Moderate-High)</p>
+                        <p><strong>Delay Reason:</strong> Random inspection sweep + documentation issues</p>
+                        <p><strong>Started At:</strong> 11/28/2025 - 08:30 EST</p>
+                        <p><strong>Expected Resolution:</strong> 11/28/2025 - 15:00 EST</p>
+                        </br>
+                        <p><strong>Packages Affected:</strong> 3,200 shipments (primarily from South America)</p>
+                        <p><strong>Countries of Origin:</strong> Brazil, Colombia, Argentina, Chile</p>
+                        <p><strong>Notes:</strong> CBP initiated targeted inspection of pharmaceutical shipments. Documentation discrepancies on 47 packages requiring shipper contact. Additional customs agents requested to expedite clearance</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-card yellow">
+                <div class="card-header yellow">
+                    <img class="card-icon" id="staff" src="./Images/Icons/staff.png" alt="Staff">
+                    <h2>Staff Alert</h2>
+                    <img class="card-hide-icon" src="./Images/Icons/hide.png" alt="Hide" title="Hide">
+                </div>
+                <div class="card-body">
+                    <div class="main-details">
+                        <h3>Equipment Training Required</h3>
+                        <p><strong>Location:</strong> Louisville Worldport (SDF01) – Warehouse C</p>
+                        <p><strong>Staff Affected:</strong> 24 operators</p>
+                        <p><strong>Training Deadline:</strong> 12/15/2025</p>
+                    </div>
+                    <div class="extra-details">
+                        <h3>Equipment Training Required</h3>
+                        <p><strong>Alert ID:</strong> FEDEX-S05847</p>
+                        <p><strong>Location:</strong> SDF01 - Warehouse C, Loading Dock 9</p>
+                        <p><strong>Severity Level:</strong> 2 (Low-Moderate)</p>
+                        <p><strong>Reported At:</strong> 11/25/2025 - 06:45 EST</p>
+                        <p><strong>Action Required By:</strong> 12/10/2025</p>
+                        </br>
+                        <p><strong>Staff Affected:</strong> 24 forklift operators require new lift truck certification</p>
+                        <p><strong>Impact:</strong> New CAT lift trucks installed, current certifications not valid for equipment</p>
+                        <p><strong>Notes:</strong> 8 new high-capacity lift trucks arrived ahead of schedule. Manufacturer training sessions booked for 12/02/2025 and 12/05/2025. Each session accommodates 12 operators. Must complete before operating new equipment</p>
+                    </div>
+                </div>
+            </div>
     <script src="./index.js"></script>
 </body>
 

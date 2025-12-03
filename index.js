@@ -9,12 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const managerToggle = document.getElementById("manager");
     const trendToggle = document.getElementById("trend");
     const trendsPage = document.getElementById("trends-page");
+    const historyToggle = document.getElementById("history");
+    const historyContainer = document.querySelector(".history-cards");
     
 
     let activeIndex = null;
     let hiddenCards = []; // Store {card, stackIndex, originalParent} objects
     let showingHidden = false; // Track if we're in "show hidden" mode
     let managerMode = false; // Track if manager mode is active
+    let showingHistory = false;
     
 
     /* ======================================================
@@ -24,6 +27,37 @@ document.addEventListener("DOMContentLoaded", () => {
         if (trendsPage.style.display === "flex") {
             trendsPage.style.display = "none";
         } else {
+            // If hidden is showing, close it first
+            if (showingHidden) {
+                showingHidden = false;
+
+                // Exit hidden view mode
+                hideToggle.style.opacity = "0.8";
+                hideToggle.style.transform = "scale(1)";
+                container.classList.remove("hidden-view");
+                
+                // Restore original stacks
+                container.innerHTML = "";
+                stacks.forEach(stack => {
+                    container.appendChild(stack);
+                });
+                container.appendChild(bottomSwitch);
+                container.appendChild(trendsPage);
+                
+                // Update icon appearance for cards back in normal view
+                updateIconAppearance();
+            }
+
+            //If showing history, close it first
+            if(showingHistory) {
+                showingHistory = false;
+                // EXITING HISTORY VIEW
+                historyToggle.style.opacity = "0.8";
+                historyToggle.style.transform = "scale(1)";
+                container.classList.remove("hide");
+                historyContainer.classList.remove("active");
+            }
+
             trendsPage.style.display = "flex";
         }
     });
@@ -74,6 +108,10 @@ document.addEventListener("DOMContentLoaded", () => {
     logo.addEventListener("click", () => {
         if (showingHidden) {
             hideToggle.click(); // Exit hidden view
+        }
+        // If showing history, exit it
+        if (showingHistory) {
+            historyToggle.click();
         }
         resetView(); // Exit zoom mode
     });
@@ -272,6 +310,52 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // ========================================
+    // HISTORY TOGGLE - SHOW DELETED CARDS
+    // ========================================
+    historyToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        
+        // If hidden is showing, close it first
+        if (showingHidden) {
+            showingHidden = false;
+
+            // Exit hidden view mode
+            hideToggle.style.opacity = "0.8";
+            hideToggle.style.transform = "scale(1)";
+            container.classList.remove("hidden-view");
+            
+            // Restore original stacks
+            container.innerHTML = "";
+            stacks.forEach(stack => {
+                container.appendChild(stack);
+            });
+            container.appendChild(bottomSwitch);
+            container.appendChild(trendsPage);
+            
+            // Update icon appearance for cards back in normal view
+            updateIconAppearance();
+        }
+        
+        // Toggle history view
+        showingHistory = !showingHistory;
+        
+        if (showingHistory) {
+            // ENTERING HISTORY VIEW
+            historyToggle.style.opacity = "1";
+            historyToggle.style.transform = "scale(1.1)";
+            container.classList.add("hide");
+            historyContainer.classList.add("active");
+            
+        } else {
+            // EXITING HISTORY VIEW
+            historyToggle.style.opacity = "0.8";
+            historyToggle.style.transform = "scale(1)";
+            container.classList.remove("hide");
+            historyContainer.classList.remove("active");
+        }
+    });
+
     /* ======================================================
        Reset back to normal grid mode
     ====================================================== */
@@ -296,6 +380,15 @@ document.addEventListener("DOMContentLoaded", () => {
     hideToggle.addEventListener("click", (e) => {
         e.stopPropagation();
         showingHidden = !showingHidden;
+        //If showing history, close it first
+        if(showingHistory) {
+            showingHistory = false;
+            // EXITING HISTORY VIEW
+            historyToggle.style.opacity = "0.8";
+            historyToggle.style.transform = "scale(1)";
+            container.classList.remove("hide");
+            historyContainer.classList.remove("active");
+        }
         
         if (showingHidden) {
             // Enter hidden view mode
@@ -327,6 +420,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 container.appendChild(stack);
             });
             container.appendChild(bottomSwitch);
+            container.appendChild(trendsPage);
             
             // Update icon appearance for cards back in normal view
             updateIconAppearance();
@@ -347,13 +441,11 @@ document.addEventListener("DOMContentLoaded", () => {
             // MANAGER MODE - DELETE PERMANENTLY
             if (managerMode) {
                 createConfirmModal(() => {
-                    // Permanently delete the card
-                    card.style.transition = "opacity 0.4s ease, transform 0.4s ease";
-                    card.style.opacity = "0";
-                    card.style.transform = "scale(0.95)";
                     
                     setTimeout(() => {
                         card.remove();
+                        // Add to history
+                        historyContainer.prepend(card);
                         
                         // Also remove from hiddenCards if it's there
                         const hiddenIndex = hiddenCards.findIndex(item => item.card === card);

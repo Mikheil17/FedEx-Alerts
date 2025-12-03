@@ -34,6 +34,7 @@ body {
     font-size: 1.7rem;
     font-weight: bold;
     margin-top: 0.8%;
+    margin-right: 4.6%;
 }
 
 #manager {
@@ -76,7 +77,6 @@ body {
 
 .system-health {
     font-size: 1.2rem;
-    /* margin-left: 2.3%; */
 }
 
 /* MAIN ALERT GRID */
@@ -84,22 +84,23 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);  /* make ALL 4 cells equal height */
-    height: calc(100vh - (9vh + 7vh));  /* fill full screen minus header/subheader */
+    height: 84vh;  /* fill full screen minus header/subheader */
     gap: 2rem;                         /* adjust spacing */
     padding: 2rem;
 }
 
 /* HIDDEN CARDS VIEW */
-.alert-container.hidden-view {
+.alert-container.hidden-view, .history-cards.active {
     display: flex !important;
     flex-direction: column;
     gap: 1.5rem;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 2rem;
+    height: 84vh;
 }
 
-.alert-container.hidden-view .alert-card {
+.alert-container.hidden-view .alert-card, .history-cards.active .alert-card{
     position: relative !important;
     transform: none !important;
     width: 100% !important;
@@ -302,15 +303,19 @@ body {
 }
 
 /* Show extra details in zoom mode */
-.stack.active .extra-details, .alert-container.hidden-view .extra-details {
+.stack.active .extra-details, .alert-container.hidden-view .extra-details, .history-cards .extra-details {
     display: block;
 }
 
 .main-details {
     display: block;
 }
-.stack.active .main-details, .alert-container.hidden-view .main-details {
+.stack.active .main-details, .alert-container.hidden-view .main-details, .history-cards .main-details {
     display: none;
+}
+
+.hide {
+    display: none !important;
 }
 
 #trends-page {
@@ -322,15 +327,23 @@ body {
     display: none;
     align-items: center;
     justify-content: center;
-    z-index: 10000;
+    z-index: 100000;
 }
 
-#trends-page img {
+#trend-desktop{
     height: 100%;
     width: 100vw;
-    object-fit: fill;
 }
 
+#trend-phone {
+    height: 100%;
+    width: 100vw;
+    display: none;
+}
+
+.history-cards, .history-cards .card-hide-icon{
+    display: none;
+}
 
 @media (max-width: 600px) {
 html {
@@ -340,6 +353,14 @@ html {
 body {
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+#trend-desktop{
+    display: none;
+}
+
+#trend-phone {
+    display: block;
 }
 
 .alert-container {
@@ -395,6 +416,7 @@ body {
 #trends-page {
     top: 12vh;
     height: 88vh;
+    overflow: hidden !important;
 }
 
 }
