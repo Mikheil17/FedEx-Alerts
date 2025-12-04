@@ -34,8 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (filterSection.classList.contains("active")) {
             historyContainer.style.height = "62vh";
+            filterToggle.src = "./Images/Icons/filter-selected.png"
         } else {
             historyContainer.style.height = "84vh";
+            filterToggle.src = "./Images/Icons/filter.png"
         }
         
         // When filter opens, also open history view
@@ -116,14 +118,14 @@ document.addEventListener("DOMContentLoaded", () => {
     trendToggle.addEventListener("click", () => {
         if (trendsPage.style.display === "flex") {
             trendsPage.style.display = "none";
+            trendToggle.src = "./Images/Icons/trend.png"
         } else {
             // If hidden is showing, close it first
             if (showingHidden) {
                 showingHidden = false;
 
                 // Exit hidden view mode
-                hideToggle.style.opacity = "0.8";
-                hideToggle.style.transform = "scale(1)";
+                hideToggle.src = "./Images/Icons/hide.png";
                 container.classList.remove("hidden-view");
                 
                 // Restore original stacks
@@ -142,13 +144,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if(showingHistory) {
                 showingHistory = false;
                 // EXITING HISTORY VIEW
-                historyToggle.style.opacity = "0.8";
-                historyToggle.style.transform = "scale(1)";
+                historyToggle.src = "./Images/Icons/history.png";
                 container.classList.remove("hide");
                 historyContainer.classList.remove("active");
             }
 
             trendsPage.style.display = "flex";
+            trendToggle.src = "./Images/Icons/trend-selected.png"
         }
     });
 
@@ -203,6 +205,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (showingHistory) {
             historyToggle.click();
         }
+
+        if (managerMode) {
+            managerToggle.click();
+        }
+
+        if (trendsPage.style.display === "flex") {
+            trendsPage.style.display = "none";
+            trendToggle.src = "./Images/Icons/trend.png"
+        }
         resetView(); // Exit zoom mode
     });
 
@@ -234,11 +245,9 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Visual feedback for manager mode
         if (managerMode) {
-            managerToggle.style.opacity = "1";
-            managerToggle.style.transform = "scale(1.1)";
+            managerToggle.src = "./Images/Icons/manager-selected.png"
         } else {
-            managerToggle.style.opacity = "0.8";
-            managerToggle.style.transform = "scale(1)";
+            managerToggle.src = "./Images/Icons/manager.png"
         }
         
         updateIconAppearance();
@@ -411,8 +420,7 @@ document.addEventListener("DOMContentLoaded", () => {
             showingHidden = false;
 
             // Exit hidden view mode
-            hideToggle.style.opacity = "0.8";
-            hideToggle.style.transform = "scale(1)";
+            hideToggle.src = "./Images/Icons/hide.png";
             container.classList.remove("hidden-view");
             
             // Restore original stacks
@@ -427,13 +435,17 @@ document.addEventListener("DOMContentLoaded", () => {
             updateIconAppearance();
         }
         
+        if (trendsPage.style.display === "flex") {
+            trendsPage.style.display = "none";
+            trendToggle.src = "./Images/Icons/trend.png"
+        }
+
         // Toggle history view
         showingHistory = !showingHistory;
         
         if (showingHistory) {
             // ENTERING HISTORY VIEW
-            historyToggle.style.opacity = "1";
-            historyToggle.style.transform = "scale(1.1)";
+            historyToggle.src = "./Images/Icons/history-selected.png";
             container.classList.add("hide");
             historyContainer.classList.add("active");
 
@@ -445,13 +457,13 @@ document.addEventListener("DOMContentLoaded", () => {
             
         } else {
             // EXITING HISTORY VIEW
-            historyToggle.style.opacity = "0.8";
-            historyToggle.style.transform = "scale(1)";
+            historyToggle.src = "./Images/Icons/history.png";
             container.classList.remove("hide");
             historyContainer.classList.remove("active");
 
             if(filterSection.classList.contains("active")) {
                 filterSection.classList.toggle("active");
+                filterToggle.src = "./Images/Icons/filter.png";
             }
         }
     });
@@ -482,18 +494,20 @@ document.addEventListener("DOMContentLoaded", () => {
         showingHidden = !showingHidden;
         //If showing history, close it first
         if(showingHistory) {
-            showingHistory = false;
-            // EXITING HISTORY VIEW
-            historyToggle.style.opacity = "0.8";
-            historyToggle.style.transform = "scale(1)";
-            container.classList.remove("hide");
-            historyContainer.classList.remove("active");
+            historyToggle.click();
         }
+
+        if (filterSection.classList.contains("active")) {
+            filterToggle.click();
+        } 
+
+        if (trendsPage.style.display === "flex") {
+            trendToggle.click();
+        } 
         
         if (showingHidden) {
             // Enter hidden view mode
-            hideToggle.style.opacity = "1";
-            hideToggle.style.transform = "scale(1.1)";
+            hideToggle.src = "./Images/Icons/hide-selected.png";
             container.classList.add("hidden-view");
             resetView(); // Exit zoom mode
             
@@ -510,8 +524,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
         } else {
             // Exit hidden view mode
-            hideToggle.style.opacity = "0.8";
-            hideToggle.style.transform = "scale(1)";
+            hideToggle.src = "./Images/Icons/hide.png";
             container.classList.remove("hidden-view");
             
             // Restore original stacks

@@ -28,6 +28,7 @@ body {
 #logo {
     height: 2rem;
     text-align: left;
+    cursor:pointer;
 }
 
 .location {
@@ -58,16 +59,17 @@ body {
 }
 
 #history {
-    height: 2.6rem;
+    height: 2.4rem;
 }
 #trend {
     height: 2.6rem;
 }
 #hide {
-    height: 2.6rem;
+    height: 2.7rem;
+    margin-top: 0.3rem;
 }
 #filter {
-    height: 1.5rem;
+    height: 2.5rem;
 }
 
 .icon:hover {
@@ -381,13 +383,13 @@ body {
     width: 2.5rem;
     height: 2.5rem;
     cursor: pointer;
-    opacity: 0.9;
     transition: opacity 0.2s, transform 0.2s;
 }
 
 .filter-icon:hover, .filter-icon.pressed{
-    opacity: 1;
     transform: scale(1.2);
+    filter: hue-rotate(90deg);
+    filter: invert(1);
 }
 
 .date-input, .location-input {
@@ -416,7 +418,7 @@ body {
 .severity-btn { cursor: pointer;}
 
 .severity-btn:hover, .severity-btn.selected {
-    color: #FF6200;
+    color: white;
 }
 
 @media (max-width: 600px) {
@@ -519,16 +521,16 @@ body {
 }
 
 #history {
-    height: 2rem;
+    height: 1.8rem;
 }
 #trend {
     height: 2rem;
 }
 #hide {
-    height: 2rem;
+    height: 2.1rem;
 }
 #filter {
-    height: 1.3rem;
+    height: 1.9rem;
 }
 
 .severity-btn, .location-text, .filter-label {
