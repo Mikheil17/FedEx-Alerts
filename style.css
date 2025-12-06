@@ -115,7 +115,6 @@ body {
     flex-grow: 0;
 }
 
-
 /* ALERT CARDS */
 .alert-card {
     background: white;
@@ -379,6 +378,10 @@ body {
     flex: 1;
 }
 
+.filter-options.date {
+    justify-content: center;
+}
+
 .filter-icon {
     width: 2.5rem;
     height: 2.5rem;
@@ -467,6 +470,10 @@ body {
     width: 90vw;
     height: 45vh;
     transform: translateY(-19rem);
+}
+
+.alert-container.hidden-view .alert-card, .history-cards.active .alert-card{
+    height: 45vh;
 }
 
 /* Spread the 3 cards */

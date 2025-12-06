@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Visual feedback for manager mode
         if (managerMode) {
-            managerToggle.src = "./Images/Icons/manager-selected.png"
+            managerToggle.src = "./Images/Icons/manager-pink.png"
         } else {
             managerToggle.src = "./Images/Icons/manager.png"
         }
@@ -433,6 +433,10 @@ document.addEventListener("DOMContentLoaded", () => {
             
             // Update icon appearance for cards back in normal view
             updateIconAppearance();
+        }
+
+        if (container.classList.contains("zoom-mode")) {
+            resetView();
         }
         
         if (trendsPage.style.display === "flex") {

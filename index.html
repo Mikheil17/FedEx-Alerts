@@ -13,7 +13,7 @@
 <body>
     <!-- HEADER -->
     <header class="header">
-        <a><img id="logo" src="./Images/fedexlogo.png" alt="FedEx Logo" /></a>
+        <a><img id="logo" src="./Images/fedexlogo.png" alt="FedEx Logo" title="Home" /></a>
         <div class="location">Starkville, MS</div>
         <img class="icon" id="manager" src="./Images/Icons/manager.png" alt="Managment" title="Managment">
     </header>
@@ -31,7 +31,7 @@
     <section class="filter-section">
         <div class="filter-settings">
             <div class="filter-row">
-                <span class="filter-label">Type ▶</span>
+                <span class="filter-label">Type:</span>
                 <div class="filter-options">
                     <img src="./Images/Icons/staff-dark.png" alt="Staff" class="filter-icon">
                     <img src="./Images/Icons/time-dark.png" alt="Time" class="filter-icon">
@@ -41,15 +41,16 @@
             </div>
 
             <div class="filter-row">
-                <span class="filter-label">Date ▶</span>
-                <div class="filter-options">
+                <span class="filter-label">Date:</span>
+                <div class="filter-options date">
                     <input type="text" placeholder="From..." class="date-input">
+                    <p class="dash">────</p>
                     <input type="text" placeholder="To..." class="date-input">
                 </div>
             </div>
 
             <div class="filter-row">
-                <span class="filter-label">Location ▶</span>
+                <span class="filter-label">Location:</span>
                 <div class="filter-options">
                     <span class="location-text">Starkville, MS</span>
                     <input type="text" placeholder="🔍Search location..." class="location-input">
@@ -57,7 +58,7 @@
             </div>
 
             <div class="filter-row">
-                <span class="filter-label">Severity ▶</span>
+                <span class="filter-label">Severity:</span>
                 <div class="filter-options">
                     <p class="severity-btn">Medium</p>
                     <p class="severity-btn">Critical</p>
