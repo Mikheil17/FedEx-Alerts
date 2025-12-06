@@ -149,6 +149,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 historyContainer.classList.remove("active");
             }
 
+            if(filterSection.classList.contains("active")) {
+                filterToggle.click();
+            }
+
             trendsPage.style.display = "flex";
             trendToggle.src = "./Images/Icons/trend-selected.png"
         }
@@ -436,7 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (container.classList.contains("zoom-mode")) {
-            resetView();
+            resetView(); // This properly exits zoom mode
         }
         
         if (trendsPage.style.display === "flex") {
@@ -489,60 +493,71 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ======================================================
-       Hide/Show functionality
-    ====================================================== */
+   Hide/Show functionality - FIXED
+====================================================== */
+
+// Toggle to hidden cards view
+hideToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
     
-    // Toggle to hidden cards view
-    hideToggle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        showingHidden = !showingHidden;
-        //If showing history, close it first
-        if(showingHistory) {
-            historyToggle.click();
-        }
-
-        if (filterSection.classList.contains("active")) {
-            filterToggle.click();
-        } 
-
-        if (trendsPage.style.display === "flex") {
-            trendToggle.click();
-        } 
+    // If showing history, close it first
+    if(showingHistory) {
+        showingHistory = false;
+        historyToggle.src = "./Images/Icons/history.png";
+        container.classList.remove("hide");
+        historyContainer.classList.remove("active");
         
-        if (showingHidden) {
-            // Enter hidden view mode
-            hideToggle.src = "./Images/Icons/hide-selected.png";
-            container.classList.add("hidden-view");
-            resetView(); // Exit zoom mode
-            
-            // Clear container and show only hidden cards
-            container.innerHTML = "";
-            hiddenCards.forEach(hiddenItem => {
-                container.appendChild(hiddenItem.card);
-                hiddenItem.card.style.opacity = "1";
-                hiddenItem.card.style.display = "flex";
-            });
-            
-            // Update icon appearance for cards in hidden view
-            updateIconAppearance();
-            
-        } else {
-            // Exit hidden view mode
-            hideToggle.src = "./Images/Icons/hide.png";
-            container.classList.remove("hidden-view");
-            
-            // Restore original stacks
-            container.innerHTML = "";
-            stacks.forEach(stack => {
-                container.appendChild(stack);
-            });
-            container.appendChild(bottomSwitch);
-            container.appendChild(trendsPage);
-            
-            // Update icon appearance for cards back in normal view
-            updateIconAppearance();
+        if(filterSection.classList.contains("active")) {
+            filterSection.classList.toggle("active");
+            filterToggle.src = "./Images/Icons/filter.png";
         }
-    });
+    }
+    
+    // NOW toggle hidden view
+    showingHidden = !showingHidden;
+
+    if (filterSection.classList.contains("active")) {
+        filterToggle.click();
+    } 
+
+    if (trendsPage.style.display === "flex") {
+        trendToggle.click();
+    } 
+    
+    if (showingHidden) {
+        // Enter hidden view mode
+        hideToggle.src = "./Images/Icons/hide-selected.png";
+        container.classList.add("hidden-view");
+        resetView(); // Exit zoom mode
+        
+        // Clear container and show only hidden cards
+        container.innerHTML = "";
+        hiddenCards.forEach(hiddenItem => {
+            container.appendChild(hiddenItem.card);
+            hiddenItem.card.style.opacity = "1";
+            hiddenItem.card.style.display = "flex";
+        });
+        
+        // Update icon appearance for cards in hidden view
+        updateIconAppearance();
+        
+    } else {
+        // Exit hidden view mode
+        hideToggle.src = "./Images/Icons/hide.png";
+        container.classList.remove("hidden-view");
+        
+        // Restore original stacks
+        container.innerHTML = "";
+        stacks.forEach(stack => {
+            container.appendChild(stack);
+        });
+        container.appendChild(bottomSwitch);
+        container.appendChild(trendsPage);
+        
+        // Update icon appearance for cards back in normal view
+        updateIconAppearance();
+    }
+});
 
     // Setup hide icons for all cards (including dynamically restored ones)
     function setupHideIcon(card, stack, stackIndex) {
