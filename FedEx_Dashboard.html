@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="FedEx_Dashboard.css">
+        <title>Fed Ex Alert Management Dashboard</title>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+        </style>
+    </head>
+    <body>
+        <h1 class="header-1">
+            <div>
+                <img class="fedexLogo" src="FedEx Colors and Logos/collective_eng_2c_rev_rgb.png" alt="FedEx Logo">
+            </div>
+            <div>
+                <span class="textFont">Starkville, MS</span>
+            </div>
+            <div class="alignRight">
+                <span class="timeDisplay">14:25</span>
+                <span class="dateDisplay">Oct 21 2025</span>
+            </div>
+        </h1>
+        <h2 class="header-2">
+            <div>
+                <img class="clickedHistory" src="Icons/historyClicked.png" alt="History Clicked">
+            </div>
+            <div>
+                <img class="trends" src="Icons/trends.png" alt="Trends">
+            </div>
+            <div>
+                <span class="sysHealth">System Health: 60%</span>
+            </div>
+            <div>
+                <img class="hide" src="Icons/hide.png" alt="Hide">
+            </div>
+            <div>
+                <img class="filter" src="Icons/filterClicked.png" alt="Filter">
+            </div>
+        </h2>
+        <h3 class="header-3">
+            <div class="fillFont">
+                <span>Type <img class="filterArrow" src="Icons/arrow.png" alt="Arrow1"></span>
+            </div>
+            <div>
+                <img class="staffFilterBtn" data-filter-type="staff" id="BtnStaff" src="Icons/staffFilter.png" alt="Staff Filter">
+            </div>
+            <div>
+                <img class="timeFilterBtn" data-filter-type="time" id="BtnTime" src="Icons/timeFilter.png" alt="Time Filter">
+            </div>
+            <div>
+                <img class="volumeFilterBtn" data-filter-type="volume" id="BtnVolume" src="Icons/volumeFilter.png" alt="Volume Filter">
+            </div>
+            <div>
+                <img class="stormFilterBtn" data-filter-type="weather" id="BtnWeather" src="Icons/weatherFilter.png" alt="Weather Filter">
+            </div>
+        </h3>
+        <h3 class="header-3">
+            <div class="fillFont">
+                <span class="fillText">Date <img class="filterArrow" src="Icons/arrow.png" alt="Arrow1"></span>
+            </div>
+            <div>
+                <input class="searchBar-1" type="text" placeholder="From...">
+            </div>
+            <div>
+                -
+            </div>
+            <div>
+                <input class="searchBar-2" type="text" placeholder="To...">
+            </div>
+        </h3>
+        <h3 class="header-3">
+            <div class="fillFont">
+                <span class="fillText">Location <img class="filterArrow" src="Icons/arrow.png" alt="Arrow1"></span>
+            </div>
+            <div>
+                <span class="fillFontBold">Starkville, MS</span>
+            </div>
+            <div>
+                <input class="searchBar-3" id="locationSearch" type="text" placeholder="">
+            </div>
+        </h3>
+        <h3 class="header-3">
+            <div class="fillFont">
+                <span class="fillText">Severity <img class="filterArrow" src="Icons/arrow.png" alt="Arrow1"></span>
+            </div>
+            <div>
+                <span class="fillFontBold">Low</span>
+            </div>
+            <div>
+                <span class="fillFontBold">Medium</span>
+            </div>
+            <div>
+                <span class="fillFontBold">Critical</span>
+            </div>
+            <div>
+                <span class="fillFontBold">Resolved</span>
+            </div>
+        </h3>
+        <ul class="bulletRemover" id="cardList">
+            <li>
+                <div class="criticalCard" data-filter-type="staff">
+                    <div class="criticalCardHeader">
+                        <img class="cardIcon" src="Icons/staff.png" alt="Staff Icon">
+                        <div class="cardCenter">
+                            <h4 class="cardTitle">Staff Alert</h4>
+                        </div>
+                        <div class="cardRight"> </div>
+                    </div>
+                    <div class="criticalCardText">
+                        <strong class="cardTypeBold">Staff Shortage</strong>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Alert ID:</strong><span class="cardTypeNormal"> FEDEX-S04518</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold" id="location">Location:</strong><span class="cardTypeNormal"> MEM01 - Cargo Bay 4</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Severity Level:</strong><span class="cardTypeNormal"> 4 (Medium - Critical)</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Reported At:</strong><span class="cardTypeNormal"> 09/30/2025 - 05:42 CST</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Estimated Resolution:</strong><span class="cardTypeNormal"> 09/30/2025 - 12:00 CST</span>
+                        </div>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Staff Count:</strong><span class="cardTypeNormal">  15 present / 32 required</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Impact:</strong><span class="cardTypeNormal">  3 outbound flights delayed, 72 packages pending load</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Notes:</strong>
+                            <span class="cardTypeNormal">  Majority of absences linked to local transit strike. On-call staff being redirected from MEM02.</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="mediumCard" data-filter-type="staff">
+                    <div class="mediumCardHeader">
+                        <img class="cardIcon" src="Icons/staff.png" alt="Staff Icon">
+                        <div class="cardCenter">
+                            <h4 class="cardTitle">Staff Alert</h4>
+                        </div>
+                        <div class="cardRight"> </div>
+                    </div>
+                    <div class="mediumCardText">
+                        <strong class="cardTypeBold">Staff Shortage</strong>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Alert ID:</strong><span class="cardTypeNormal"> FEDEX-S04518</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold" id="location">Location:</strong><span class="cardTypeNormal"> MEM05 - Foyer</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Severity Level:</strong><span class="cardTypeNormal"> 3 (Medium)</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Reported At:</strong><span class="cardTypeNormal"> 10/10/2025 - 08:00 CST</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Estimated Resolution:</strong><span class="cardTypeNormal"> 10/10/2025 - 09:00 CST</span>
+                        </div>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Staff Count:</strong><span class="cardTypeNormal">  23 present / 32 required</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Impact:</strong><span class="cardTypeNormal">  1 outbound flight delayed, 56 packages pending load</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Notes:</strong>
+                            <span class="cardTypeNormal">  Majority of absences linked to local transit strike. On-call staff being redirected from MEM03.</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="lowCard" data-filter-type="staff">
+                    <div class="lowCardHeader">
+                        <img class="cardIcon" src="Icons/staff.png" alt="Staff Icon">
+                        <div class="cardCenter">
+                            <h4 class="cardTitle">Staff Alert</h4>
+                        </div>
+                        <div class="cardRight"> </div>
+                    </div>
+                    <div class="lowCardText">
+                        <strong class="cardTypeBold">Staff Shortage</strong>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Alert ID:</strong><span class="cardTypeNormal"> FEDEX-S04518</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Location:</strong><span class="cardTypeNormal"> MEM04 - Office</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Severity Level:</strong><span class="cardTypeNormal"> 1 (Low)</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Reported At:</strong><span class="cardTypeNormal"> 01/24/2025 - 10:42 CST</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Estimated Resolution:</strong><span class="cardTypeNormal"> 01/24/2025 - 13:00 CST</span>
+                        </div>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Staff Count:</strong><span class="cardTypeNormal">  28 present / 32 required</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Impact:</strong><span class="cardTypeNormal">  12 packages pending load</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Notes:</strong>
+                            <span class="cardTypeNormal">  Majority of absences linked to local transit strike. On-call staff being redirected from MEM02.</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="criticalCard" data-filter-type="time">
+                    <div class="criticalCardHeader">
+                        <img class="cardIcon" src="Icons/time.png" alt="Staff Icon">
+                        <div class="cardCenter">
+                            <h4 class="cardTitle">Time Alert</h4>
+                        </div>
+                        <div class="cardRight"> </div>
+                    </div>
+                    <div class="criticalCardText">
+                        <strong class="cardTypeBold">Flight Delay</strong>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Alert ID:</strong><span class="cardTypeNormal"> FEDEX-T03289</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Route:</strong><span class="cardTypeNormal"> Memphis (MEM) to Chicago O'Hare (ORD)</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Severity Level:</strong><span class="cardTypeNormal"> 5 (Critical)</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Flight #</strong><span class="cardTypeNormal"> FX 2143</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Reported At:</strong><span class="cardTypeNormal"> 09/30/2025 - 07:05 CST</span>
+                        </div>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Estimated Departure:</strong><span class="cardTypeNormal">  12/30/2025 - 09:45 CST</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Impact:</strong>
+                            <span class="cardTypeNormal">  5,600 packages delayed, high-priority: 320 supplies, 47 legal contracts</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="mediumCard" data-filter-type="time">
+                    <div class="mediumCardHeader">
+                        <img class="cardIcon" src="Icons/time.png" alt="Staff Icon">
+                        <div class="cardCenter">
+                            <h4 class="cardTitle">Time Alert</h4>
+                        </div>
+                        <div class="cardRight"> </div>
+                    </div>
+                    <div class="mediumCardText">
+                        <strong class="cardTypeBold">Flight Delay</strong>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Alert ID:</strong><span class="cardTypeNormal"> FEDEX-T03289</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Route:</strong><span class="cardTypeNormal"> Arizona (AZ) to Illinois (IL)</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Severity Level:</strong><span class="cardTypeNormal"> 2 (Low - Medium)</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Flight #</strong><span class="cardTypeNormal"> FX 2683</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Reported At:</strong><span class="cardTypeNormal"> 02/27/2025 - 11:14 CST</span>
+                        </div>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Estimated Departure:</strong><span class="cardTypeNormal">  05/24/2025 - 11:45 CST</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Impact:</strong>
+                            <span class="cardTypeNormal">  1,000 packages delayed, medium-priority: 60 supplies, 7 legal contracts</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="lowCard" data-filter-type="time">
+                    <div class="lowCardHeader">
+                        <img class="cardIcon" src="Icons/time.png" alt="Staff Icon">
+                        <div class="cardCenter">
+                            <h4 class="cardTitle">Time Alert</h4>
+                        </div>
+                        <div class="cardRight"> </div>
+                    </div>
+                    <div class="lowCardText">
+                        <strong class="cardTypeBold">Flight Delay</strong>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Alert ID:</strong><span class="cardTypeNormal"> FEDEX-T03289</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Route:</strong><span class="cardTypeNormal">Mississippi (MS) to Ohio (OH) </span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Severity Level:</strong><span class="cardTypeNormal"> 1 (Low)</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Flight #</strong><span class="cardTypeNormal"> FX 2143</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Reported At:</strong><span class="cardTypeNormal"> 07/05/2025 - 05:05 CST</span>
+                        </div>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Estimated Departure:</strong><span class="cardTypeNormal">  08/20/2025 - 19:45 CST</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Impact:</strong>
+                            <span class="cardTypeNormal">  300 packages delayed, high-priority: 40 supplies</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="criticalCard" data-filter-type="volume">
+                    <div class="criticalCardHeader">
+                        <img class="cardIcon" src="Icons/volume.png" alt="Staff Icon">
+                        <div class="cardCenter">
+                            <h4 class="cardTitle">Volume Alert</h4>
+                        </div>
+                        <div class="cardRight"> </div>
+                    </div>
+                    <div class="criticalCardText">
+                        <strong class="cardTypeBold">Belt Damage</strong>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Alert ID:</strong><span class="cardTypeNormal"> FEDEX-P06744</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Location:</strong><span class="cardTypeNormal"> DFW02 - Sorting Belt Line 7</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Severity Level:</strong><span class="cardTypeNormal"> 4 (Medium - Critical)</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Reported At:</strong><span class="cardTypeNormal"> 09/30/2025 - 02:31 CST</span>
+                        </div>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Description:</strong>
+                            <span class="cardTypeNormal"> Container C-571 sustained structural damage during forklift transfer.</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Affected Packages:</strong>
+                            <span class="cardTypeNormal">  427 total; 36 marked Priority Overnight.</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Estimated Recovery Time:</strong><span class="cardTypeNormal">  4 hours.</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="mediumCard" data-filter-type="volume">
+                    <div class="mediumCardHeader">
+                        <img class="cardIcon" src="Icons/volume.png" alt="Staff Icon">
+                        <div class="cardCenter">
+                            <h4 class="cardTitle">Volume Alert</h4>
+                        </div>
+                        <div class="cardRight"> </div>
+                    </div>
+                    <div class="mediumCardText">
+                        <strong class="cardTypeBold">Belt Damage</strong>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Alert ID:</strong><span class="cardTypeNormal"> FEDEX-P06744</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Location:</strong><span class="cardTypeNormal"> DFW02 - Forking Belt Line 2</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Severity Level:</strong><span class="cardTypeNormal"> 3 (Medium)</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Reported At:</strong><span class="cardTypeNormal"> 12/30/2025 - 04:50 CST</span>
+                        </div>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Description:</strong>
+                            <span class="cardTypeNormal"> Container B-384 sustained structural damage during forklift transfer.</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Affected Packages:</strong>
+                            <span class="cardTypeNormal">  198 total; 25 marked Priority Overnight.</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Estimated Recovery Time:</strong><span class="cardTypeNormal">  2 hours.</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="lowCard" data-filter-type="volume">
+                    <div class="lowCardHeader">
+                        <img class="cardIcon" src="Icons/volume.png" alt="Staff Icon">
+                        <div class="cardCenter">
+                            <h4 class="cardTitle">Volume Alert</h4>
+                        </div>
+                        <div class="cardRight"> </div>
+                    </div>
+                    <div class="lowCardText">
+                        <strong class="cardTypeBold">Belt Damage</strong>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Alert ID:</strong><span class="cardTypeNormal"> FEDEX-P06744</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Location:</strong><span class="cardTypeNormal"> DFW02 - Main Belt Line 5</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Severity Level:</strong><span class="cardTypeNormal"> 1 (Low)</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Reported At:</strong><span class="cardTypeNormal"> 03/20/2025 - 07:31 CST</span>
+                        </div>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Description:</strong>
+                            <span class="cardTypeNormal"> Container A-54 sustained structural damage during forklift transfer.</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Affected Packages:</strong>
+                            <span class="cardTypeNormal">  27 total; 2 marked Priority Overnight.</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Estimated Recovery Time:</strong><span class="cardTypeNormal">  30 minutes.</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="criticalCard" data-filter-type="weather">
+                    <div class="criticalCardHeader">
+                        <img class="cardIcon" src="Icons/weather.png" alt="Staff Icon">
+                        <div class="cardCenter">
+                            <h4 class="cardTitle">Severe Weather</h4>
+                        </div>
+                        <div class="cardRight"> </div>
+                    </div>
+                    <div class="criticalCardText">
+                        <strong class="cardTypeBold">Wind Advisory</strong>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Alert ID:</strong><span class="cardTypeNormal"> FEDEX-W00952</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Location:</strong><span class="cardTypeNormal"> EWR01 - Regional Sorting Facility</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Reported At:</strong><span class="cardTypeNormal"> 09/30/2025 - 11:45 EST</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Severity Level:</strong><span class="cardTypeNormal"> 4 (Medium - Critical)</span>
+                        </div>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Condition:</strong>
+                            <span class="cardTypeNormal"> Winds sustained at 45 mph, gusts 65 mph</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Impact:</strong>
+                            <span class="cardTypeNormal"> All ground ops suspended; 2 outbounds delayed</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Estimated Duration:</strong><span class="cardTypeNormal">  Until 15:00 EST</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Contingency:</strong><span class="cardTypeNormal">  Redirect inbound cargo to PHL02 & BOS01</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="mediumCard" data-filter-type="weather">
+                    <div class="mediumCardHeader">
+                        <img class="cardIcon" src="Icons/weather.png" alt="Staff Icon">
+                        <div class="cardCenter">
+                            <h4 class="cardTitle">Severe Weather</h4>
+                        </div>
+                        <div class="cardRight"> </div>
+                    </div>
+                    <div class="mediumCardText">
+                        <strong class="cardTypeBold">Tornado Watch</strong>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Alert ID:</strong><span class="cardTypeNormal"> FEDEX-W00952</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Location:</strong><span class="cardTypeNormal"> EWR01 - Regional Sorting Facility</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Reported At:</strong><span class="cardTypeNormal"> 11/15/2025 - 17:45 EST</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Severity Level:</strong><span class="cardTypeNormal"> 3 (Medium)</span>
+                        </div>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Condition:</strong>
+                            <span class="cardTypeNormal"> A tornado is possible for your area</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Impact:</strong>
+                            <span class="cardTypeNormal"> Many ground ops suspended; 1 outbound delayed</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Estimated Duration:</strong><span class="cardTypeNormal">  Until 22:00 EST</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Contingency:</strong><span class="cardTypeNormal">  Redirect inbound cargo to PHL03 & BOS05</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="lowCard" data-filter-type="weather">
+                    <div class="lowCardHeader">
+                        <img class="cardIcon" src="Icons/weather.png" alt="Staff Icon">
+                        <div class="cardCenter">
+                            <h4 class="cardTitle">Severe Weather</h4>
+                        </div>
+                        <div class="cardRight"> </div>
+                    </div>
+                    <div class="lowCardText">
+                        <strong class="cardTypeBold">Dense Fog Advisory</strong>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Alert ID:</strong><span class="cardTypeNormal"> FEDEX-W00952</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Location:</strong><span class="cardTypeNormal"> EWR01 - Regional Sorting Facility</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Reported At:</strong><span class="cardTypeNormal"> 06/18/2025 - 7:45 EST</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Severity Level:</strong><span class="cardTypeNormal"> 1 (Low)</span>
+                        </div>
+                        <p><br></p>
+                        <div>
+                            <strong class="cardTypeBold">Condition:</strong>
+                            <span class="cardTypeNormal"> Visility is limited, exercise caution when driving</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Impact:</strong>
+                            <span class="cardTypeNormal"> Few ground ops suspended; 1 outbound delayed</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Estimated Duration:</strong><span class="cardTypeNormal">  Until 11:00 EST</span>
+                        </div>
+                        <div>
+                            <strong class="cardTypeBold">Contingency:</strong><span class="cardTypeNormal">  Redirect inbound cargo to PHL05 & BOS02</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <script src="FedEx_Dashboard.js"></script>
+    </body>
+</html>
